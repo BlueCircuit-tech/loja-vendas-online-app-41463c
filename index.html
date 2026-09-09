@@ -1120,6 +1120,298 @@
       </script>
     </section>
 
+    <section data-tela="catalogo-de-livros" class="hidden">
+      <div class="catalogo-de-livros-entrance">
+        <div class="bg-white rounded-b-[28px] shadow-sm px-5 pt-4 pb-3">
+          <div class="flex items-center justify-between mb-3">
+            <div>
+              <h1 class="font-display text-2xl font-bold text-marca-800">Nossa Loja</h1>
+              <p class="text-sm text-gray-500 font-body">Encontre seu próximo livro</p>
+            </div>
+            <button onclick="catalogo_de_livros_abrirFiltros()" class="active:scale-90 transition-transform w-10 h-10 flex items-center justify-center rounded-full bg-gray-100 hover:bg-gray-200" aria-label="Filtrar livros">
+              <svg class="w-5 h-5 text-marca-800" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z"/></svg>
+            </button>
+          </div>
+          <div class="relative">
+            <svg class="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+            <input id="catalogo-pesquisa" type="text" placeholder="Buscar por título ou autor..." oninput="catalogo_de_livros_buscar(this.value)" class="w-full pl-10 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-2xl text-sm font-body text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-marca-500/30 focus:border-marca-500 transition-all" />
+          </div>
+        </div>
+        <div class="bg-[#F8FAFC] px-5 pt-4 pb-2">
+          <div id="catalogo-chips" class="flex gap-2 overflow-x-auto pb-3 scrollbar-hide" style="-webkit-overflow-scrolling:touch;">
+            <button onclick="catalogo_de_livros_filtrarCategoria('todos')" data-cat="todos" class="catalogo-chip active whitespace-nowrap px-4 py-2 rounded-full text-sm font-semibold font-body transition-all duration-200 border-2">Todos</button>
+            <button onclick="catalogo_de_livros_filtrarCategoria('ficcao')" data-cat="ficcao" class="catalogo-chip whitespace-nowrap px-4 py-2 rounded-full text-sm font-semibold font-body transition-all duration-200 border-2">Ficção</button>
+            <button onclick="catalogo_de_livros_filtrarCategoria('autoajuda')" data-cat="autoajuda" class="catalogo-chip whitespace-nowrap px-4 py-2 rounded-full text-sm font-semibold font-body transition-all duration-200 border-2">Autoajuda</button>
+            <button onclick="catalogo_de_livros_filtrarCategoria('infantil')" data-cat="infantil" class="catalogo-chip whitespace-nowrap px-4 py-2 rounded-full text-sm font-semibold font-body transition-all duration-200 border-2">Infantil</button>
+            <button onclick="catalogo_de_livros_filtrarCategoria('tecnologia')" data-cat="tecnologia" class="catalogo-chip whitespace-nowrap px-4 py-2 rounded-full text-sm font-semibold font-body transition-all duration-200 border-2">Tecnologia</button>
+          </div>
+        </div>
+        <div class="px-5 pt-2 pb-6">
+          <div class="flex items-center justify-between mb-3">
+            <span id="catalogo-contador" class="text-xs text-gray-500 font-body">8 livros encontrados</span>
+            <span class="text-xs text-gray-400 font-body">2 colunas</span>
+          </div>
+          <div id="catalogo-grid" class="grid grid-cols-2 gap-3">
+          </div>
+          <div id="catalogo-vazio" class="hidden text-center py-16 px-4">
+            <svg class="w-16 h-16 text-gray-300 mx-auto mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+            <p class="text-gray-500 font-body text-sm">Nenhum livro encontrado</p>
+            <p class="text-gray-400 font-body text-xs mt-1">Tente outra busca ou categoria</p>
+          </div>
+        </div>
+      </div>
+      <div id="catalogo-sidebar-overlay" class="fixed inset-0 bg-black/40 z-40 hidden opacity-0 transition-opacity duration-300" onclick="catalogo_de_livros_fecharFiltros()"></div>
+      <div id="catalogo-sidebar" class="fixed top-0 right-0 h-full w-72 bg-white z-50 shadow-2xl transform translate-x-full transition-transform duration-300 flex flex-col">
+        <div class="flex items-center justify-between p-5 border-b border-gray-100">
+          <h2 class="font-display text-lg font-bold text-marca-800">Filtros</h2>
+          <button onclick="catalogo_de_livros_fecharFiltros()" class="active:scale-90 transition-transform w-8 h-8 flex items-center justify-center rounded-full hover:bg-gray-100">
+            <svg class="w-5 h-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+          </button>
+        </div>
+        <div class="p-5 flex-1 overflow-y-auto">
+          <p class="text-sm font-semibold text-gray-700 font-body mb-3">Formato</p>
+          <div class="flex flex-col gap-2 mb-6">
+            <label class="flex items-center gap-3 cursor-pointer group"><input type="checkbox" value="ebook" onchange="catalogo_de_livros_aplicarFiltros()" class="sidebar-filtro-formato w-4 h-4 rounded text-marca-500 focus:ring-marca-500" checked /><span class="text-sm text-gray-600 font-body group-hover:text-marca-700 transition-colors">E-book</span></label>
+            <label class="flex items-center gap-3 cursor-pointer group"><input type="checkbox" value="fisico" onchange="catalogo_de_livros_aplicarFiltros()" class="sidebar-filtro-formato w-4 h-4 rounded text-marca-500 focus:ring-marca-500" checked /><span class="text-sm text-gray-600 font-body group-hover:text-marca-700 transition-colors">Físico</span></label>
+          </div>
+          <p class="text-sm font-semibold text-gray-700 font-body mb-3">Faixa de Preço</p>
+          <div class="flex gap-2 mb-6">
+            <input id="sidebar-preco-min" type="number" placeholder="Mín" oninput="catalogo_de_livros_aplicarFiltros()" class="w-full px-3 py-2.5 bg-gray-50 border border-gray-200 rounded-xl text-sm font-body focus:outline-none focus:ring-2 focus:ring-marca-500/30" />
+            <input id="sidebar-preco-max" type="number" placeholder="Máx" oninput="catalogo_de_livros_aplicarFiltros()" class="w-full px-3 py-2.5 bg-gray-50 border border-gray-200 rounded-xl text-sm font-body focus:outline-none focus:ring-2 focus:ring-marca-500/30" />
+          </div>
+          <p class="text-sm font-semibold text-gray-700 font-body mb-3">Ordenar por</p>
+          <select id="sidebar-ordem" onchange="catalogo_de_livros_aplicarFiltros()" class="w-full px-3 py-2.5 bg-gray-50 border border-gray-200 rounded-xl text-sm font-body text-gray-700 focus:outline-none focus:ring-2 focus:ring-marca-500/30">
+            <option value="nome">Nome A-Z</option>
+            <option value="preco-asc">Menor Preço</option>
+            <option value="preco-desc">Maior Preço</option>
+            <option value="autor">Autor A-Z</option>
+          </select>
+        </div>
+        <div class="p-5 border-t border-gray-100">
+          <button onclick="catalogo_de_livros_limparFiltros()" class="w-full py-3 rounded-2xl text-sm font-semibold font-body text-marca-600 border-2 border-marca-200 hover:bg-marca-50 transition-all active:scale-95">Limpar Filtros</button>
+        </div>
+      </div>
+      <div id="catalogo-modal-overlay" class="fixed inset-0 bg-black/50 z-50 hidden flex items-end sm:items-center justify-center p-0 sm:p-4" onclick="if(event.target===this)catalogo_de_livros_fecharModal()">
+        <div id="catalogo-modal" class="bg-white w-full max-w-sm rounded-t-[28px] sm:rounded-[28px] max-h-[85vh] overflow-y-auto transform translate-y-full transition-transform duration-300">
+          <div id="catalogo-modal-conteudo"></div>
+        </div>
+      </div>
+    </section>
+    <script>
+    (function() {
+      'use strict';
+      const livros = [
+        { id:1, titulo:'O Segredo das Águas', autor:'Maria Helena Costa', categoria:'ficcao', preco:39.90, formato:['ebook'], paginas:284, descricao:'Um romance envolvente que acompanha a jornada de Ana, uma oceanógrafa que descobre segredos ancestrais nas profundezas do oceano. Entre mistérios, romance e reviravoltas, esta narrativa prende o leitor do início ao fim.', isbn:'978-65-86214-01-3', corCapa:'from-blue-600 to-indigo-700', inicial:'SA' },
+        { id:2, titulo:'Poder da Mente', autor:'Dr. Ricardo Almeida', categoria:'autoajuda', preco:29.90, formato:['fisico'], paginas:192, descricao:'Um guia prático e transformador sobre como reprogramar seus pensamentos e alcançar seus objetivos. Com técnicas validadas pela psicologia cognitiva, o Dr. Ricardo Almeida mostra passo a passo como desenvolver uma mentalidade vencedora.', isbn:'978-65-86214-02-0', corCapa:'from-amber-500 to-orange-600', inicial:'PM' },
+        { id:3, titulo:'Aventuras do Pequeno Davi', autor:'Ana Beatriz Silva', categoria:'infantil', preco:24.90, formato:['ebook'], paginas:64, descricao:'Davi é um menino curioso de 7 anos que descobre um mundo mágico dentro do porão da sua avó. Com ilustrações encantadoras e texto acessível, este livro transporta as crianças para uma aventura inesquecível.', isbn:'978-65-86214-03-7', corCapa:'from-pink-400 to-rose-500', inicial:'AD' },
+        { id:4, titulo:'Inteligência Artificial na Prática', autor:'Prof. Carlos Mendes', categoria:'tecnologia', preco:49.90, formato:['fisico'], paginas:420, descricao:'Um livro completo e atualizado sobre IA, desde os fundamentos até aplicações práticas no mercado brasileiro. Inclui estudos de caso reais, códigos em Python e análise de tendências para os próximos anos.', isbn:'978-65-86214-04-4', corCapa:'from-slate-700 to-slate-900', inicial:'IA' },
+        { id:5, titulo:'Reflexões para a Vida', autor:'Padre João Oliveira', categoria:'autoajuda', preco:19.90, formato:['ebook'], paginas:128, descricao:'Coletânea de reflexões diárias que convidam à introspecção e ao crescimento espiritual. Cada capítulo traz um tema diferente: perdão, gratidão, propósito e amor ao próximo.', isbn:'978-65-86214-05-1', corCapa:'from-emerald-600 to-teal-700', inicial:'RV' },
+        { id:6, titulo:'O Mistério da Casa Verde', autor:'Luísa Ferreira', categoria:'ficcao', preco:34.90, formato:['ebook','fisico'], paginas:356, descricao:'Quando a família se muda para uma casa antiga no interior de Minas Gerais, Clara descobre cartas escondidas que revelam uma história de amor e mistério dos anos 1950. Um thriller psicológico que prende até a última página.', isbn:'978-65-86214-06-8', corCapa:'from-green-600 to-emerald-800', inicial:'MC' },
+        { id:7, titulo:'Programação para Crianças', autor:'TechKids Editora', categoria:'infantil', preco:29.90, formato:['fisico'], paginas:96, descricao:'Um livro colorido e interativo que ensina lógica de programação para crianças de 8 a 12 anos. Com personagens divertidos e desafios práticos, aprender a programar nunca foi tão divertido!', isbn:'978-65-86214-07-5', corCapa:'from-violet-500 to-purple-700', inicial:'PC' },
+        { id:8, titulo:'Blockchain Descomplicado', autor:'Felipe Rocha', categoria:'tecnologia', preco:44.90, formato:['ebook'], paginas:310, descricao:'Um guia completo sobre blockchain e criptomoedas, escrito em linguagem acessível para iniciantes. O autor explica desde os conceitos básicos até as aplicações práticas no mercado financeiro brasileiro.', isbn:'978-65-86214-08-2', corCapa:'from-cyan-600 to-blue-800', inicial:'BD' }
+      ];
+      let categoriaAtiva = 'todos';
+      let buscaAtual = '';
+      let filtrosAtivos = { formatos: ['ebook','fisico'], precoMin: null, precoMax: null, ordem: 'nome' };
+
+      function getIconeCarrinho() {
+        return '<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 100 4 2 2 0 000-4z"/></svg>';
+      }
+      function getIconeDownload() {
+        return '<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>';
+      }
+      function getIconeBook() {
+        return '<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>';
+      }
+      function getIconeStar() {
+        return '<svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>';
+      }
+
+      function catalogo_de_livros_capaHTML(livro) {
+        return '<div class="w-full aspect-[3/4] rounded-xl bg-gradient-to-br ' + livro.corCapa + ' flex items-center justify-center shadow-md relative overflow-hidden"><div class="absolute inset-0 opacity-10"><svg class="w-full h-full" viewBox="0 0 100 100"><pattern id="p' + livro.id + '" patternUnits="userSpaceOnUse" width="20" height="20"><circle cx="10" cy="10" r="1" fill="white"/></pattern><rect width="100" height="100" fill="url(#p' + livro.id + ')"/></svg></div><span class="text-white/90 font-display font-bold text-lg text-center px-3 leading-tight drop-shadow-lg">' + livro.inicial + '</span></div>';
+      }
+
+      function catalogo_de_livros_renderizar(livrosParaRenderizar) {
+        const grid = document.getElementById('catalogo-grid');
+        const vazio = document.getElementById('catalogo-vazio');
+        const contador = document.getElementById('catalogo-contador');
+        contador.textContent = livrosParaRenderizar.length + ' livro' + (livrosParaRenderizar.length !== 1 ? 's' : '') + ' encontrado' + (livrosParaRenderizar.length !== 1 ? 's' : '');
+        if (livrosParaRenderizar.length === 0) {
+          grid.classList.add('hidden');
+          vazio.classList.remove('hidden');
+          return;
+        }
+        grid.classList.remove('hidden');
+        vazio.classList.add('hidden');
+        grid.innerHTML = livrosParaRenderizar.map(function(l) {
+          const badges = l.formato.map(function(f) {
+            const cor = f === 'ebook' ? 'bg-emerald-100 text-emerald-700 border-emerald-200' : 'bg-rose-100 text-rose-700 border-rose-200';
+            const icone = f === 'ebook' ? getIconeDownload() : getIconeBook();
+            const label = f === 'ebook' ? 'E-book' : 'Físico';
+            return '<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-bold border ' + cor + '">' + icone + label + '</span>';
+          }).join(' ');
+          const estrelas = Array.from({length:5}, function() {
+            const idx = Math.floor(Math.random() * 3) + 3;
+            return '<span class="' + (idx >= 4 ? 'text-amber-400' : 'text-gray-300') + '">' + getIconeStar() + '</span>';
+          }).join('');
+          return '<div onclick="catalogo_de_livros_abrirDetalhe(' + l.id + ')" class="group bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 cursor-pointer active:scale-[0.97]">' +
+            catalogo_de_livros_capaHTML(l) +
+            '<div class="p-3">' +
+              '<p class="font-body text-sm font-bold text-gray-800 leading-tight mb-0.5 line-clamp-2 group-hover:text-marca-700 transition-colors">' + l.titulo + '</p>' +
+              '<p class="font-body text-xs text-gray-500 mb-2">' + l.autor + '</p>' +
+              '<div class="flex items-center gap-0.5 mb-2">' + estrelas + '</div>' +
+              '<div class="flex items-center justify-between">' +
+                '<span class="font-body text-sm font-bold text-emerald-600">R$ ' + l.preco.toFixed(2).replace('.', ',') + '</span>' +
+              '</div>' +
+              '<div class="flex gap-1 mt-2">' + badges + '</div>' +
+            '</div>' +
+          '</div>';
+        }).join('');
+      }
+
+      function catalogo_de_livros_filtrar() {
+        let resultado = livros.slice();
+        if (categoriaAtiva !== 'todos') {
+          resultado = resultado.filter(function(l) { return l.categoria === categoriaAtiva; });
+        }
+        if (buscaAtual.trim()) {
+          const termo = buscaAtual.trim().toLowerCase();
+          resultado = resultado.filter(function(l) {
+            return l.titulo.toLowerCase().indexOf(termo) > -1 || l.autor.toLowerCase().indexOf(termo) > -1;
+          });
+        }
+        if (filtrosAtivos.formatos.length > 0 && filtrosAtivos.formatos.length < 2) {
+          resultado = resultado.filter(function(l) { return l.formato.some(function(f) { return filtrosAtivos.formatos.indexOf(f) > -1; }); });
+        }
+        if (filtrosAtivos.precoMin !== null) {
+          resultado = resultado.filter(function(l) { return l.preco >= filtrosAtivos.precoMin; });
+        }
+        if (filtrosAtivos.precoMax !== null) {
+          resultado = resultado.filter(function(l) { return l.preco <= filtrosAtivos.precoMax; });
+        }
+        const ordem = document.getElementById('sidebar-ordem');
+        if (ordem) {
+          switch (ordem.value) {
+            case 'nome': resultado.sort(function(a,b) { return a.titulo.localeCompare(b.titulo); }); break;
+            case 'preco-asc': resultado.sort(function(a,b) { return a.preco - b.preco; }); break;
+            case 'preco-desc': resultado.sort(function(a,b) { return b.preco - a.preco; }); break;
+            case 'autor': resultado.sort(function(a,b) { return a.autor.localeCompare(b.autor); }); break;
+          }
+        }
+        catalogo_de_livros_renderizar(resultado);
+      }
+
+      window.catalogo_de_livros_buscar = function(valor) {
+        buscaAtual = valor;
+        catalogo_de_livros_filtrar();
+      };
+      window.catalogo_de_livros_filtrarCategoria = function(cat) {
+        categoriaAtiva = cat;
+        document.querySelectorAll('.catalogo-chip').forEach(function(chip) {
+          const isActive = chip.getAttribute('data-cat') === cat;
+          chip.classList.toggle('bg-marca-500', isActive);
+          chip.classList.toggle('text-white', isActive);
+          chip.classList.toggle('border-marca-500', isActive);
+          chip.classList.toggle('bg-white', !isActive);
+          chip.classList.toggle('text-gray-600', !isActive);
+          chip.classList.toggle('border-gray-200', !isActive);
+          chip.classList.toggle('hover:border-marca-300', !isActive);
+        });
+        catalogo_de_livros_filtrar();
+      };
+      window.catalogo_de_livros_abrirFiltros = function() {
+        document.getElementById('catalogo-sidebar-overlay').classList.remove('hidden');
+        requestAnimationFrame(function() {
+          document.getElementById('catalogo-sidebar-overlay').classList.remove('opacity-0');
+          document.getElementById('catalogo-sidebar').classList.remove('translate-x-full');
+        });
+      };
+      window.catalogo_de_livros_fecharFiltros = function() {
+        document.getElementById('catalogo-sidebar-overlay').classList.add('opacity-0');
+        document.getElementById('catalogo-sidebar').classList.add('translate-x-full');
+        setTimeout(function() { document.getElementById('catalogo-sidebar-overlay').classList.add('hidden'); }, 300);
+      };
+      window.catalogo_de_livros_aplicarFiltros = function() {
+        const checks = document.querySelectorAll('.sidebar-filtro-formato:checked');
+        filtrosAtivos.formatos = Array.from(checks).map(function(c) { return c.value; });
+        const min = document.getElementById('sidebar-preco-min');
+        const max = document.getElementById('sidebar-preco-max');
+        filtrosAtivos.precoMin = min && min.value ? parseFloat(min.value) : null;
+        filtrosAtivos.precoMax = max && max.value ? parseFloat(max.value) : null;
+        catalogo_de_livros_filtrar();
+      };
+      window.catalogo_de_livros_limparFiltros = function() {
+        filtrosAtivos = { formatos: ['ebook','fisico'], precoMin: null, precoMax: null, ordem: 'nome' };
+        document.querySelectorAll('.sidebar-filtro-formato').forEach(function(c) { c.checked = true; });
+        var min = document.getElementById('sidebar-preco-min'); if (min) min.value = '';
+        var max = document.getElementById('sidebar-preco-max'); if (max) max.value = '';
+        var ordem = document.getElementById('sidebar-ordem'); if (ordem) ordem.value = 'nome';
+        catalogo_de_livros_filtrar();
+        toast('Filtros limpos com sucesso', 'info');
+        setTimeout(catalogo_de_livros_fecharFiltros, 400);
+      };
+      window.catalogo_de_livros_abrirDetalhe = function(id) {
+        var livro = livros.find(function(l) { return l.id === id; });
+        if (!livro) return;
+        var html = '<div class="relative">' +
+          '<div class="w-full aspect-[3/4] bg-gradient-to-br ' + livro.corCapa + ' flex items-center justify-center relative overflow-hidden">' +
+            '<div class="absolute inset-0 opacity-10"><svg class="w-full h-full" viewBox="0 0 100 100"><pattern id="mdl' + livro.id + '" patternUnits="userSpaceOnUse" width="20" height="20"><circle cx="10" cy="10" r="1" fill="white"/></pattern><rect width="100" height="100" fill="url(#mdl' + livro.id + ')"/></svg></div>' +
+            '<span class="text-white/90 font-display font-bold text-3xl drop-shadow-lg">' + livro.inicial + '</span>' +
+          '</div>' +
+          '<button onclick="catalogo_de_livros_fecharModal()" class="absolute top-4 right-4 w-8 h-8 bg-white/90 backdrop-blur rounded-full flex items-center justify-center shadow-md active:scale-90 transition-transform">' +
+            '<svg class="w-4 h-4 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>' +
+          '</button>' +
+        '</div>' +
+        '<div class="p-5">' +
+          '<h2 class="font-display text-xl font-bold text-marca-800 mb-1">' + livro.titulo + '</h2>' +
+          '<p class="font-body text-sm text-gray-500 mb-3">por <span class="text-marca-600 font-medium">' + livro.autor + '</span></p>' +
+          '<div class="flex items-center gap-1 mb-3">' + Array.from({length:5}, function(_,i) { return '<span class="' + (i < 4 ? 'text-amber-400' : 'text-gray-300') + '">' + getIconeStar() + '</span>'; }).join('') + '<span class="text-xs text-gray-400 ml-1 font-body">(4.0)</span></div>' +
+          '<div class="flex gap-2 mb-4">' + livro.formato.map(function(f) { var cor = f==='ebook'?'bg-emerald-100 text-emerald-700 border-emerald-200':'bg-rose-100 text-rose-700 border-rose-200'; var ic = f==='ebook'?getIconeDownload():getIconeBook(); var lb = f==='ebook'?'E-book':'Físico'; return '<span class="inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-bold border ' + cor + '">' + ic + lb + '</span>'; }).join(' ') + '</div>' +
+          '<p class="font-body text-sm text-gray-600 leading-relaxed mb-4">' + livro.descricao + '</p>' +
+          '<div class="bg-gray-50 rounded-2xl p-4 mb-4 space-y-2">' +
+            '<div class="flex justify-between font-body text-sm"><span class="text-gray-500">Páginas</span><span class="font-semibold text-gray-700">' + livro.paginas + '</span></div>' +
+            '<div class="flex justify-between font-body text-sm"><span class="text-gray-500">Categoria</span><span class="font-semibold text-gray-700 capitalize">' + livro.categoria + '</span></div>' +
+            '<div class="flex justify-between font-body text-sm"><span class="text-gray-500">ISBN</span><span class="font-semibold text-gray-700 text-xs">' + livro.isbn + '</span></div>' +
+            '<div class="flex justify-between font-body text-sm"><span class="text-gray-500">Formato</span><span class="font-semibold text-gray-700 capitalize">' + livro.formato.join(', ') + '</span></div>' +
+          '</div>' +
+          '<div class="flex items-center justify-between mb-5">' +
+            '<div><span class="font-body text-xs text-gray-400 line-through">R$ ' + (livro.preco * 1.3).toFixed(2).replace('.',',') + '</span><br/><span class="font-display text-2xl font-bold text-emerald-600">R$ ' + livro.preco.toFixed(2).replace('.',',') + '</span></div>' +
+            '<span class="bg-amber-100 text-amber-700 text-xs font-bold px-3 py-1.5 rounded-full font-body">-13% OFF</span>' +
+          '</div>' +
+          '<button onclick="catalogo_de_livros_adicionarCarrinho(' + livro.id + ')" class="w-full py-3.5 bg-marca-500 hover:bg-marca-600 text-white rounded-2xl font-body font-semibold text-sm transition-all active:scale-[0.97] flex items-center justify-center gap-2 shadow-md hover:shadow-lg">' +
+            getIconeCarrinho() + ' Adicionar ao Carrinho' +
+          '</button>' +
+        '</div>';
+        abrirModal(html, livro.titulo);
+        var overlay = document.getElementById('catalogo-modal-overlay');
+        var modal = document.getElementById('catalogo-modal');
+        overlay.classList.remove('hidden');
+        requestAnimationFrame(function() {
+          overlay.classList.remove('opacity-0');
+          modal.classList.remove('translate-y-full');
+        });
+      };
+      window.catalogo_de_livros_fecharModal = function() {
+        var overlay = document.getElementById('catalogo-modal-overlay');
+        var modal = document.getElementById('catalogo-modal');
+        modal.classList.add('translate-y-full');
+        overlay.classList.add('opacity-0');
+        setTimeout(function() { overlay.classList.add('hidden'); }, 300);
+      };
+      window.catalogo_de_livros_adicionarCarrinho = function(id) {
+        var livro = livros.find(function(l) { return l.id === id; });
+        if (!livro) return;
+        catalogo_de_livros_fecharModal();
+        toast('"' + livro.titulo + '" adicionado ao carrinho!', 'ok');
+      };
+      window.catalogo_de_livros_init = function() {
+        catalogo_de_livros_filtrarCategoria('todos');
+        catalogo_de_livros_renderizar(livros);
+      };
+      window.catalogo_de_livros_init();
+    })();
+    </script>
+
     <!-- TELAS -->
 
     </div>
