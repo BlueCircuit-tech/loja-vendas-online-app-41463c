@@ -716,6 +716,252 @@
         </script>
     </section>
 
+    <section data-tela="detalhe-da-noticia" class="hidden">
+  <div class="min-h-screen bg-gray-50">
+    <!-- Hero com imagem -->
+    <div class="relative">
+      <div class="relative h-64 w-full overflow-hidden">
+        <div id="dn-hero-bg" class="absolute inset-0 bg-gradient-to-br from-marca-700 via-marca-500 to-blue-400"></div>
+        <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
+      </div>
+      <button onclick="mostrarTela('pagina-inicial')" class="absolute top-4 left-4 z-10 flex h-9 w-9 items-center justify-center rounded-full bg-black/30 text-white backdrop-blur-sm transition hover:bg-black/50 active:scale-90">
+        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M14 10H6M6 10l4-4M6 10l4 4"/></svg>
+      </button>
+      <button onclick="detalhe_da_noticia_compartilhar()" class="absolute top-4 right-4 z-10 flex h-9 w-9 items-center justify-center rounded-full bg-black/30 text-white backdrop-blur-sm transition hover:bg-black/50 active:scale-90">
+        <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M13 10a2.5 2.5 0 01-2 1h-6a3 3 0 00-3 3v1.5h9.5a2.5 2.5 0 001.5-5z"/><path d="M9.5 8.5V4h4.5a2.5 2.5 0 010 5H9.5z"/></svg>
+      </button>
+    </div>
+
+    <!-- Conteúdo -->
+    <div class="relative -mt-10 rounded-t-3xl bg-gray-50 px-5 pb-6">
+      <div class="mb-4 flex items-center gap-2">
+        <span id="dn-categoria-badge" class="badge">Economia</span>
+        <span id="dn-lida-badge" class="hidden badge bg-green-100 text-green-700 border-green-200">
+          <svg class="mr-1 h-3 w-3" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M3 8.5l3.5 3.5L15 5"/></svg>
+          Lida
+        </span>
+      </div>
+      <h1 id="dn-titulo" class="font-display text-2xl font-bold leading-tight text-gray-900"></h1>
+      <div class="mt-4 flex flex-wrap items-center gap-3 text-sm text-gray-500">
+        <div class="flex items-center gap-1.5">
+          <div class="flex h-7 w-7 items-center justify-center rounded-full bg-marca-100 text-xs font-bold text-marca-700">RC</div>
+          <span id="dn-autor" class="font-medium text-gray-700"></span>
+        </div>
+        <span class="text-gray-300">|</span>
+        <span id="dn-data" class="flex items-center gap-1">
+          <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="7" cy="7" r="6"/><path d="M7 4v3.5l2.5 1.5"/></svg>
+        </span>
+        <span id="dn-tempo-leitura" class="flex items-center gap-1">
+          <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M2 7h4l2-4v12l-2-4H2V7z"/></svg>
+        </span>
+      </div>
+    </div>
+
+    <div class="px-5">
+      <div id="dn-intro" class="mt-5 border-l-4 border-marca-500 bg-marca-50 px-4 py-3 font-body text-base leading-relaxed text-gray-700 italic rounded-r-lg"></div>
+
+      <article id="dn-corpo" class="mt-6 font-body text-base leading-[1.85] text-gray-700 space-y-5"></article>
+
+      <!-- Ações -->
+      <div class="mt-8 flex items-center gap-3 border-t border-gray-200 pt-5">
+        <button onclick="detalhe_da_noticia_curtir()" id="dn-btn-curtir" class="flex flex-1 items-center justify-center gap-2 rounded-xl border border-gray-200 bg-white px-4 py-2.5 text-sm font-medium text-gray-600 transition hover:border-red-200 hover:bg-red-50 hover:text-red-500 active:scale-95">
+          <svg id="dn-icone-curtir" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 16s-5.5-3.5-5.5-8A3.5 3.5 0 019 4.5 3.5 3.5 0 0114.5 8c0 4.5-5.5 8-5.5 8z"/></svg>
+          <span id="dn-texto-curtir">Curtir</span>
+        </button>
+        <button onclick="detalhe_da_noticia_salvar()" id="dn-btn-salvar" class="flex flex-1 items-center justify-center gap-2 rounded-xl border border-gray-200 bg-white px-4 py-2.5 text-sm font-medium text-gray-600 transition hover:border-marca-200 hover:bg-marca-50 hover:text-marca-700 active:scale-95">
+          <svg id="dn-icone-salvar" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 2h7l3 3v12a1 1 0 01-1 1H5a1 1 0 01-1-1V3a1 1 0 011-1z"/><path d="M7 2v3h4V2"/></svg>
+          <span id="dn-texto-salvar">Salvar</span>
+        </button>
+        <button onclick="detalhe_da_noticia_compartilhar()" class="flex flex-1 items-center justify-center gap-2 rounded-xl border border-gray-200 bg-white px-4 py-2.5 text-sm font-medium text-gray-600 transition hover:border-blue-200 hover:bg-blue-50 hover:text-blue-600 active:scale-95">
+          <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M13 10a2.5 2.5 0 01-2 1h-6a3 3 0 00-3 3v1.5h9.5a2.5 2.5 0 001.5-5z"/><path d="M9.5 8.5V4h4.5a2.5 2.5 0 010 5H9.5z"/></svg>
+          Compartilhar
+        </button>
+      </div>
+
+      <!-- Notícias Relacionadas -->
+      <div class="mt-8 pb-8">
+        <div class="flex items-center justify-between mb-4">
+          <h2 class="font-display text-lg font-bold text-gray-900">Notícias Relacionadas</h2>
+          <button onclick="detalhe_da_noticia_ver_todas()" class="text-sm font-medium text-marca-600 transition hover:text-marca-800">Ver todas</button>
+        </div>
+        <div id="dn-relacionadas-lista" class="flex gap-3 overflow-x-auto pb-2 snap-x snap-mandatory scrollbar-hide" style="-webkit-overflow-scrolling:touch;"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+(function(){
+  const noticiaPrincipal = {
+    id: 'n1',
+    titulo: 'Mercado brasileiro de e-books cresce 47% em 2025 e atinge recorde histórico',
+    categoria: 'Economia',
+    autor: 'Ricardo Couto',
+    autorIniciais: 'RC',
+    data: '2025-12-10',
+    tempoLeitura: 6,
+    curtida: false,
+    salva: false,
+    lida: true,
+    heroGradiente: 'from-marca-700 via-marca-500 to-blue-400',
+    iconeHero: '<svg width="56" height="56" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h16v32H4z"/><path d="M10 12h6M10 18h6M10 24h4"/><path d="M20 14l4-4v20l-4-4"/></svg>',
+    introducao: 'Venda de livros digitais ultrapassa 12 milhões de unidades no país. Especialistas apontam tendência irreversível de migração para o formato digital.',
+    corpo: [
+      { tipo: 'p', texto: 'O mercado editorial brasileiro atingiu um marco histórico em 2025: a venda de e-books cresceu 47% em relação ao ano anterior, ultrapassando a marca de 12 milhões de unidades comercializadas. Os dados foram divulgados nesta semana pela Associação Brasileira de Editores de Livros (ABDL), consolidando uma tendência de crescimento que já dura cinco anos consecutivos.' },
+      { tipo: 'p', texto: 'Segundo o relatório da entidade, os livros digitais representaram 23% do faturamento total do setor editorial no país, contra 16% registrados em 2024. Em valores absolutos, o mercado movimentou aproximadamente R$ 580 milhões apenas com e-books, um aumento de 52% em comparação com o ano anterior.' },
+      { tipo: 'h3', texto: 'Fatores do crescimento acelerado' },
+      { tipo: 'p', texto: 'Entre os principais fatores que impulsionaram esse crescimento, os especialistas destacam a popularização dos aplicativos de leitura para smartphones, a expansão do clube de leitura Assinatura de Livros — que já conta com mais de 800 mil assinantes — e a pandemia de conteúdo literário nas redes sociais. Perfis no Instagram e TikTok dedicados a resenhas de livros atraíram milhões de jovens para a leitura digital.' },
+      { tipo: 'stat', label: 'Crescimento em 2025', valor: '47%', icone: '<svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 20l5-10 5 5 5-8"/></svg>', cor: 'text-green-600', bg: 'bg-green-50' },
+      { tipo: 'p', texto: '"O digital deixou de ser uma alternativa para se tornar o principal canal de venda para muitos gêneros", afirmou Maria Helena Viana, presidente da ABDL, durante a coletiva de imprensa em São Paulo. "Romances, ficção científica e livros de autoajuda lideram o ranking de vendas digitais, mas já observamos crescimento expressivo também em não-ficção e literatura infantojuvenil."' },
+      { tipo: 'h3', texto: 'Audiobooks disparam' },
+      { tipo: 'p', texto: 'Outro destaque do relatório foi o crescimento vertiginoso dos audiolivros, que registraram alta de 120% no ano. O formato, que permite que o usuário ouça o conteúdo enquanto realiza outras atividades, tornou-se particularmente popular entre os usuários de transporte público e motoristas de aplicativo. A plataforma Storytel e o Audible da Amazon lideram o segmento no Brasil.' },
+      { tipo: 'stat', label: 'Audiobooks vendidos', valor: '3.4 mi', icone: '<svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 10v9a2 2 0 002 2h14a2 2 0 002-2v-3"/><path d="M18 10V7a6 6 0 00-12 0v3"/><circle cx="14" cy="17" r="1.5"/></svg>', cor: 'text-purple-600', bg: 'bg-purple-50' },
+      { tipo: 'p', texto: 'A Feira do Livro de São Paulo, realizada no mês passado, registrou um público 35% maior em sua edição digital paralela, com mais de 1,2 milhão de acessos à plataforma virtual do evento. Organizadores afirmam que a tendência é que as próximas edições mantenham o formato híbrido como opção permanente.' },
+      { tipo: 'p', texto: 'Com o crescimento do mercado digital, pequenos autores independentes também têm encontrado novas oportunidades. Plataformas como a Amazon Kindle Direct Publishing permitem que escritores publiquem suas obras sem intermediários, alcançando um público global. Estima-se que mais de 45 mil títulos tenham sido publicados de forma independente no Brasil em 2025.' }
+    ]
+  };
+
+  const noticiasRelacionadas = [
+    { id: 'n2', titulo: 'App brasileiro de leitura ultrapassa 5 milhões de downloads', categoria: 'Tecnologia', autor: 'Ana Beatriz Luz', data: '2025-12-08', tempoLeitura: 4, curtida: false, heroGradiente: 'from-blue-600 via-indigo-500 to-purple-500', iconeHero: '<svg width="40" height="40" fill="none" stroke="white" stroke-width="1.5"><rect x="6" y="4" width="16" height="24" rx="2"/><path d="M10 10h8M10 14h6M10 18h4"/></svg>' },
+    { id: 'n3', titulo: 'Escritora mineira vence prêmio literário internacional', categoria: 'Cultura', autor: 'Felipe Andrade', data: '2025-12-07', tempoLeitura: 5, curtida: false, heroGradiente: 'from-amber-600 via-orange-500 to-red-400', iconeHero: '<svg width="40" height="40" fill="none" stroke="white" stroke-width="1.5"><path d="M20 4l-12 10h4v8h8v-8h4z"/></svg>' },
+    { id: 'n4', titulo: 'Biblioteca pública de Curitiba lança acervo digital gratuito', categoria: 'Educação', autor: 'Juliana Torres', data: '2025-12-06', tempoLeitura: 3, curtida: false, heroGradiente: 'from-emerald-600 via-teal-500 to-cyan-400', iconeHero: '<svg width="40" height="40" fill="none" stroke="white" stroke-width="1.5"><path d="M4 6h10l4 4v22H4z"/><path d="M18 8l4-4v24l-4-4"/><path d="M8 12h8M8 17h6"/></svg>' },
+    { id: 'n5', titulo: 'Grupo editorial anuncia fusão e deve dominar 40% do mercado', categoria: 'Negócios', autor: 'Marcos Vinícius', data: '2025-12-05', tempoLeitura: 7, curtida: false, heroGradiente: 'from-gray-700 via-gray-600 to-gray-500', iconeHero: '<svg width="40" height="40" fill="none" stroke="white" stroke-width="1.5"><path d="M6 8h12l6 6v18H6z"/><path d="M6 14h24M14 8v20"/></svg>' },
+    { id: 'n6', titulo: 'Estudo revela que 68% dos brasileiros leem pelo celular', categoria: 'Pesquisa', autor: 'Patrícia Mendes', data: '2025-12-04', tempoLeitura: 4, curtida: false, heroGradiente: 'from-violet-600 via-purple-500 to-fuchsia-400', iconeHero: '<svg width="40" height="40" fill="none" stroke="white" stroke-width="1.5"><path d="M14 4h-6l-2 16h12l-2-16z"/><path d="M10 8h8"/><circle cx="14" cy="26" r="2"/></svg>' },
+    { id: 'n7', titulo: 'Feira do Livro de SP confirma edição híbrida para 2026', categoria: 'Eventos', autor: 'Lucas Ferreira', data: '2025-12-03', tempoLeitura: 3, curtida: false, heroGradiente: 'from-rose-600 via-pink-500 to-rose-300', iconeHero: '<svg width="40" height="40" fill="none" stroke="white" stroke-width="1.5"><path d="M20 8l-10 12L4 18l4-2-4-2 10-12 4 2-4 2 4 2z"/></svg>' }
+  ];
+
+  const coresCategoria = {
+    'Economia': 'bg-blue-100 text-blue-700 border-blue-200',
+    'Tecnologia': 'bg-cyan-100 text-cyan-700 border-cyan-200',
+    'Cultura': 'bg-amber-100 text-amber-700 border-amber-200',
+    'Educação': 'bg-emerald-100 text-emerald-700 border-emerald-200',
+    'Negócios': 'bg-gray-100 text-gray-700 border-gray-200',
+    'Pesquisa': 'bg-violet-100 text-violet-700 border-violet-200',
+    'Eventos': 'bg-rose-100 text-rose-700 border-rose-200'
+  };
+
+  function detalhe_da_noticia_renderizarNoticia(noticia) {
+    document.getElementById('dn-hero-bg').className = 'absolute inset-0 bg-gradient-to-br ' + noticia.heroGradiente;
+    document.getElementById('dn-hero-bg').innerHTML = '<div class="flex h-full w-full items-center justify-center">' + noticia.iconeHero + '</div>';
+
+    const catBadge = document.getElementById('dn-categoria-badge');
+    catBadge.textContent = noticia.categoria;
+    catBadge.className = 'badge ' + (coresCategoria[noticia.categoria] || 'bg-blue-100 text-blue-700 border-blue-200');
+
+    document.getElementById('dn-titulo').textContent = noticia.titulo;
+    document.getElementById('dn-autor').textContent = noticia.autor;
+    document.getElementById('dn-data').innerHTML = '<svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="7" cy="7" r="6"/><path d="M7 4v3.5l2.5 1.5"/></svg> ' + dataBR(noticia.data);
+    document.getElementById('dn-tempo-leitura').innerHTML = '<svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M2 7h4l2-4v12l-2-4H2V7z"/></svg> ' + noticia.tempoLeitura + ' min de leitura';
+
+    document.getElementById('dn-intro').textContent = noticia.introducao;
+
+    const corpoEl = document.getElementById('dn-corpo');
+    corpoEl.innerHTML = '';
+    noticia.corpo.forEach(bloco => {
+      const el = document.createElement(bloco.tipo === 'p' ? 'p' : bloco.tipo === 'h3' ? 'h3' : 'div');
+      if (bloco.tipo === 'p') {
+        el.textContent = bloco.texto;
+        el.className = 'text-justify';
+      } else if (bloco.tipo === 'h3') {
+        el.textContent = bloco.texto;
+        el.className = 'font-display text-lg font-bold text-gray-900 mt-6 mb-1';
+      } else if (bloco.tipo === 'stat') {
+        el.className = bloco.bg + ' rounded-xl px-5 py-4 mt-4';
+        el.innerHTML = '<div class="flex items-center gap-4"><div class="' + bloco.cor + '">' + bloco.icone + '</div><div><p class="text-xs font-medium text-gray-500 uppercase tracking-wide">' + bloco.label + '</p><p class="text-2xl font-bold text-gray-900 mt-0.5">' + bloco.valor + '</p></div></div>';
+      }
+      corpoEl.appendChild(el);
+    });
+
+    const lidaBadge = document.getElementById('dn-lida-badge');
+    if (noticia.lida) lidaBadge.classList.remove('hidden');
+    else lidaBadge.classList.add('hidden');
+
+    atualizarBotoesAcoes();
+  }
+
+  function atualizarBotoesAcoes() {
+    const btnCurtir = document.getElementById('dn-btn-curtir');
+    const btnSalvar = document.getElementById('dn-btn-salvar');
+    const iconeCurtir = document.getElementById('dn-icone-curtir');
+    const textoCurtir = document.getElementById('dn-texto-curtir');
+    const iconeSalvar = document.getElementById('dn-icone-salvar');
+    const textoSalvar = document.getElementById('dn-texto-salvar');
+
+    if (noticiaPrincipal.curtida) {
+      btnCurtir.classList.add('border-red-200', 'bg-red-50', 'text-red-500');
+      btnCurtir.classList.remove('text-gray-600');
+      iconeCurtir.setAttribute('fill', 'currentColor');
+      textoCurtir.textContent = 'Curtido';
+    } else {
+      btnCurtir.classList.remove('border-red-200', 'bg-red-50', 'text-red-500');
+      btnCurtir.classList.add('text-gray-600');
+      iconeCurtir.setAttribute('fill', 'none');
+      textoCurtir.textContent = 'Curtir';
+    }
+
+    if (noticiaPrincipal.salva) {
+      btnSalvar.classList.add('border-marca-200', 'bg-marca-50', 'text-marca-700');
+      btnSalvar.classList.remove('text-gray-600');
+      iconeSalvar.setAttribute('fill', 'currentColor');
+      textoSalvar.textContent = 'Salvo';
+    } else {
+      btnSalvar.classList.remove('border-marca-200', 'bg-marca-50', 'text-marca-700');
+      btnSalvar.classList.add('text-gray-600');
+      iconeSalvar.setAttribute('fill', 'none');
+      textoSalvar.textContent = 'Salvar';
+    }
+  }
+
+  function detalhe_da_noticia_curtir() {
+    noticiaPrincipal.curtida = !noticiaPrincipal.curtida;
+    atualizarBotoesAcoes();
+    toast(noticiaPrincipal.curtida ? 'Você curtiu esta notícia' : 'Curtida removida', 'ok');
+  }
+
+  function detalhe_da_noticia_salvar() {
+    noticiaPrincipal.salva = !noticiaPrincipal.salva;
+    atualizarBotoesAcoes();
+    toast(noticiaPrincipal.salva ? 'Notícia salva nos favoritos' : 'Salvo removido', 'ok');
+  }
+
+  function detalhe_da_noticia_compartilhar() {
+    const shareData = { title: noticiaPrincipal.titulo, text: 'Confira esta notícia: ' + noticiaPrincipal.titulo, url: window.location.href };
+    if (navigator.share) { navigator.share(shareData).catch(function(){}); }
+    else {
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText(window.location.href).then(function() { toast('Link copiado para a área de transferência', 'ok'); });
+      } else { toast('Compartilhamento não disponível', 'info'); }
+    }
+  }
+
+  function detalhe_da_noticia_abrir_relacionada(noticia) {
+    detalhe_da_noticia_renderizarNoticia(noticia);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function detalhe_da_noticia_ver_todas() {
+    mostrarTela('pagina-inicial');
+  }
+
+  function detalhe_da_noticia_renderizarRelacionadas() {
+    const lista = document.getElementById('dn-relacionadas-lista');
+    lista.innerHTML = '';
+    noticiasRelacionadas.forEach(function(noticia) {
+      const card = document.createElement('div');
+      card.className = 'snap-start shrink-0 w-[240px] cursor-pointer rounded-2xl bg-white shadow-sm border border-gray-100 overflow-hidden transition hover:shadow-md active:scale-[0.97]';
+      card.onclick = function() { detalhe_da_noticia_abrir_relacionada(noticia); };
+      card.innerHTML = '<div class="relative h-32 w-full bg-gradient-to-br ' + noticia.heroGradiente + ' flex items-center justify-center">' + noticia.iconeHero + '<span class="absolute top-2 left-2 badge text-[10px] py-0.5 px-2 ' + (coresCategoria[noticia.categoria] || 'bg-blue-100 text-blue-700') + '">' + noticia.categoria + '</span></div><div class="p-3"><h3 class="font-display text-sm font-bold text-gray-900 leading-snug line-clamp-2">' + noticia.titulo + '</h3><p class="mt-2 text-xs text-gray-400">' + dataBR(noticia.data) + ' · ' + noticia.tempoLeitura + ' min</p></div>';
+      lista.appendChild(card);
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', function() {
+    detalhe_da_noticia_renderizarNoticia(noticiaPrincipal);
+    detalhe_da_noticia_renderizarRelacionadas();
+  });
+})();
+</script>
+
     <!-- TELAS -->
 
     </div>
