@@ -2939,6 +2939,469 @@
     })();
     </script>
 
+    <section data-tela="painel-administrativo" class="hidden">
+  <div class="px-4 pb-24 pt-4 space-y-5">
+
+    <div class="flex items-center justify-between">
+      <div>
+        <h2 class="font-display text-xl font-bold text-marca-900">Painel Administrativo</h2>
+        <p class="text-sm text-gray-500 mt-0.5">Visão geral do seu negócio</p>
+      </div>
+      <button onclick="mostrarTela('gerenciar-conteudo')" class="bg-marca-500 text-white text-sm px-4 py-2 rounded-lg active:scale-95 transition-transform font-medium flex items-center gap-1.5 shadow-md shadow-marca-500/20">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15"/></svg>
+        Novo Conteúdo
+      </button>
+    </div>
+
+    <div class="bg-marca-900 rounded-2xl px-5 py-4 flex items-center gap-4 shadow-lg">
+      <div class="w-12 h-12 rounded-full bg-marca-500/30 flex items-center justify-center text-white font-bold text-lg flex-shrink-0">AD</div>
+      <div class="min-w-0">
+        <p class="text-white font-semibold text-sm">Bem-vindo, Administrador</p>
+        <p class="text-marca-200 text-xs mt-0.5">Último acesso: hoje, 09:42</p>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-2 gap-3">
+      <button onclick="painel_administrativo_mostrarDetalheVendas()" class="card text-left p-4 rounded-xl active:scale-95 transition-all hover:shadow-md">
+        <div class="flex items-center justify-between mb-2">
+          <div class="w-9 h-9 rounded-lg bg-green-100 flex items-center justify-center">
+            <svg class="w-5 h-5 text-green-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m-3-2.818l.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          </div>
+          <span class="text-xs text-green-600 font-medium bg-green-50 px-2 py-0.5 rounded-full">+12.5%</span>
+        </div>
+        <p class="text-xs text-gray-500">Vendas do Mês</p>
+        <p class="font-display font-bold text-lg text-gray-900">R$ 12.450</p>
+      </button>
+
+      <button onclick="painel_administrativo_mostrarPedidosPendentes()" class="card text-left p-4 rounded-xl active:scale-95 transition-all hover:shadow-md relative">
+        <div class="flex items-center justify-between mb-2">
+          <div class="w-9 h-9 rounded-lg bg-orange-100 flex items-center justify-center">
+            <svg class="w-5 h-5 text-orange-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M16.5 6v.75m0 3v.75m0 3v.75m0 3V18m-9-5.25h5.25M7.5 15h3m-3 3h3m-3 3h3M4.5 19.5h15a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H4.5A1.5 1.5 0 003 6v12a1.5 1.5 0 001.5 1.5z"/></svg>
+          </div>
+          <span class="badge bg-orange-500 text-white text-xs px-2 py-0.5 rounded-full">8</span>
+        </div>
+        <p class="text-xs text-gray-500">Pedidos Pendentes</p>
+        <p class="font-display font-bold text-lg text-gray-900">8 pedidos</p>
+      </button>
+
+      <button onclick="painel_administrativo_mostrarNovosLeitores()" class="card text-left p-4 rounded-xl active:scale-95 transition-all hover:shadow-md">
+        <div class="flex items-center justify-between mb-2">
+          <div class="w-9 h-9 rounded-lg bg-blue-100 flex items-center justify-center">
+            <svg class="w-5 h-5 text-marca-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19.128a9.001 9.001 0 001.424-4.95 9 9 0 00-4.015-8.879M15 19.128A9.001 9.001 0 019.576 14.18M15 19.128V14.25m0 0a48.111 48.111 0 00-1.878-.878M15 19.128v-4.5m0 4.5h.008M9.576 14.18a48.04 48.04 0 00-1.878-.878M9.576 14.18a9 9 0 015.048-4.95M9.576 14.18v-4.5m0 4.5h-.008m4.024-4.878A9 9 0 0112 3c2.255 0 4.316.926 5.786 2.446M12 3a9 9 0 00-5.786 2.446"/></svg>
+          </div>
+          <span class="text-xs text-green-600 font-medium bg-green-50 px-2 py-0.5 rounded-full">+23.1%</span>
+        </div>
+        <p class="text-xs text-gray-500">Novos Leitores</p>
+        <p class="font-display font-bold text-lg text-gray-900">142</p>
+      </button>
+
+      <button onclick="painel_administrativo_mostrarVisualizacoes()" class="card text-left p-4 rounded-xl active:scale-95 transition-all hover:shadow-md">
+        <div class="flex items-center justify-between mb-2">
+          <div class="w-9 h-9 rounded-lg bg-purple-100 flex items-center justify-center">
+            <svg class="w-5 h-5 text-purple-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+          </div>
+          <span class="text-xs text-green-600 font-medium bg-green-50 px-2 py-0.5 rounded-full">+8.7%</span>
+        </div>
+        <p class="text-xs text-gray-500">Visualizações</p>
+        <p class="font-display font-bold text-lg text-gray-900">3.2k</p>
+      </button>
+    </div>
+
+    <div class="card rounded-xl p-4">
+      <div class="flex items-center justify-between mb-4">
+        <div>
+          <h3 class="font-display font-bold text-sm text-gray-900">Vendas dos Últimos 7 Dias</h3>
+          <p class="text-xs text-gray-500 mt-0.5">Período: 10/06 a 16/06/2025</p>
+        </div>
+        <span class="text-xs text-green-600 font-medium bg-green-50 px-2.5 py-1 rounded-full">+18% vs semana anterior</span>
+      </div>
+      <div class="flex items-end justify-between gap-2 h-40">
+        <div class="flex flex-col items-center gap-1 flex-1">
+          <div class="w-full bg-marca-500 rounded-t-md transition-all duration-500 hover:bg-marca-600" style="height:45%"></div>
+          <span class="text-[10px] text-gray-400">Seg</span>
+        </div>
+        <div class="flex flex-col items-center gap-1 flex-1">
+          <div class="w-full bg-marca-500 rounded-t-md transition-all duration-500 hover:bg-marca-600" style="height:65%"></div>
+          <span class="text-[10px] text-gray-400">Ter</span>
+        </div>
+        <div class="flex flex-col items-center gap-1 flex-1">
+          <div class="w-full bg-marca-500 rounded-t-md transition-all duration-500 hover:bg-marca-600" style="height:30%"></div>
+          <span class="text-[10px] text-gray-400">Qua</span>
+        </div>
+        <div class="flex flex-col items-center gap-1 flex-1">
+          <div class="w-full bg-marca-500 rounded-t-md transition-all duration-500 hover:bg-marca-600" style="height:80%"></div>
+          <span class="text-[10px] text-gray-400">Qui</span>
+        </div>
+        <div class="flex flex-col items-center gap-1 flex-1">
+          <div class="w-full bg-marca-500 rounded-t-md transition-all duration-500 hover:bg-marca-600" style="height:55%"></div>
+          <span class="text-[10px] text-gray-400">Sex</span>
+        </div>
+        <div class="flex flex-col items-center gap-1 flex-1">
+          <div class="w-full bg-marca-500 rounded-t-md transition-all duration-500 hover:bg-marca-600" style="height:90%"></div>
+          <span class="text-[10px] text-gray-400">Sáb</span>
+        </div>
+        <div class="flex flex-col items-center gap-1 flex-1">
+          <div class="w-full bg-marca-500 rounded-t-md transition-all duration-500 hover:bg-marca-600" style="height:70%"></div>
+          <span class="text-[10px] text-gray-400">Dom</span>
+        </div>
+      </div>
+      <div class="flex justify-between mt-2 pt-2 border-t border-gray-100">
+        <div class="text-center">
+          <p class="text-xs text-gray-400">Total</p>
+          <p class="text-sm font-bold text-gray-900">R$ 4.280</p>
+        </div>
+        <div class="text-center">
+          <p class="text-xs text-gray-400">Média/dia</p>
+          <p class="text-sm font-bold text-gray-900">R$ 611</p>
+        </div>
+        <div class="text-center">
+          <p class="text-xs text-gray-400">Pedidos</p>
+          <p class="text-sm font-bold text-gray-900">47</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card rounded-xl">
+      <div class="p-4 flex items-center justify-between border-b border-gray-100">
+        <div>
+          <h3 class="font-display font-bold text-sm text-gray-900">Pedidos Recentes</h3>
+          <p class="text-xs text-gray-500 mt-0.5">Últimos pedidos recebidos</p>
+        </div>
+        <button onclick="painel_administrativo_filtrarPedidos()" class="text-xs text-marca-500 font-medium flex items-center gap-1 active:scale-95 transition-transform">
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 6h9.75M10.5 6a1.5 1.5 0 11-3 0m3 0a1.5 1.5 0 10-3 0M3.75 6H7.5m3 12h9.75m-9.75 0a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m-3.75 0H7.5m9-6h3.75m-3.75 0a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m-9.75 0h9.75"/></svg>
+          Filtros
+        </button>
+      </div>
+      <div class="p-3">
+        <div class="relative mb-3">
+          <svg class="w-4 h-4 text-gray-400 absolute left-3 top-1/2 -translate-y-1/2" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"/></svg>
+          <input id="painel-busca-pedidos" type="text" placeholder="Buscar por cliente ou nº do pedido..." oninput="painel_administrativo_buscarPedidos(this.value)" class="w-full pl-9 pr-4 py-2 text-sm bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-marca-500 focus:border-transparent transition-all">
+        </div>
+      </div>
+      <div id="painel-lista-pedidos" class="px-3 pb-3 space-y-2">
+      </div>
+      <div id="painel-estado-vazio" class="hidden px-4 pb-4 text-center py-8">
+        <svg class="w-10 h-10 text-gray-300 mx-auto mb-2" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"/></svg>
+        <p class="text-sm text-gray-400">Nenhum pedido encontrado</p>
+      </div>
+    </div>
+
+    <div class="card rounded-xl p-4">
+      <h3 class="font-display font-bold text-sm text-gray-900 mb-3">Ações Rápidas</h3>
+      <div class="grid grid-cols-3 gap-2">
+        <button onclick="mostrarTela('gerenciar-conteudo')" class="flex flex-col items-center gap-1.5 p-3 rounded-xl bg-gray-50 active:scale-95 transition-all hover:bg-marca-50">
+          <div class="w-10 h-10 rounded-full bg-marca-100 flex items-center justify-center">
+            <svg class="w-5 h-5 text-marca-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10"/></svg>
+          </div>
+          <span class="text-[11px] text-gray-600 font-medium">Notícias</span>
+        </button>
+        <button onclick="painel_administrativo_editarPalavraDia()" class="flex flex-col items-center gap-1.5 p-3 rounded-xl bg-gray-50 active:scale-95 transition-all hover:bg-marca-50">
+          <div class="w-10 h-10 rounded-full bg-green-100 flex items-center justify-center">
+            <svg class="w-5 h-5 text-green-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 18v-5.25m0 0a6.01 6.01 0 001.5-.189m-1.5.189a6.01 6.01 0 01-1.5-.189M3.75 21h16.5a2.25 2.25 0 002.25-2.25V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z"/></svg>
+          </div>
+          <span class="text-[11px] text-gray-600 font-medium">Palavra do Dia</span>
+        </button>
+        <button onclick="mostrarTela('catalogo-de-livros')" class="flex flex-col items-center gap-1.5 p-3 rounded-xl bg-gray-50 active:scale-95 transition-all hover:bg-marca-50">
+          <div class="w-10 h-10 rounded-full bg-orange-100 flex items-center justify-center">
+            <svg class="w-5 h-5 text-orange-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A9 9 0 006 18c1.052 0 2.062-.18 3-.512m12-5.122A8.967 8.967 0 0118 3.75c1.052 0 2.062.18 3 .512v14.25A9 9 0 0118 18c-1.052 0-2.062-.18-3-.512m-9 0v-3m9 3v3"/></svg>
+          </div>
+          <span class="text-[11px] text-gray-600 font-medium">Livros</span>
+        </button>
+        <button onclick="painel_administrativo_verTodosPedidos()" class="flex flex-col items-center gap-1.5 p-3 rounded-xl bg-gray-50 active:scale-95 transition-all hover:bg-marca-50">
+          <div class="w-10 h-10 rounded-full bg-purple-100 flex items-center justify-center">
+            <svg class="w-5 h-5 text-purple-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 18.75a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 01-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h1.125c.621 0 1.129-.504 1.09-1.124a17.902 17.902 0 00-3.213-9.193 2.056 2.056 0 00-1.58-.86H14.25M16.5 18.75h-2.25m0-11.177v-.958c0-.568-.422-1.048-.987-1.106a48.554 48.554 0 00-10.026 0 1.106 1.106 0 00-.987 1.106v7.635m12-6.677v6.677m0 4.5v-4.5m0 0h-12"/></svg>
+          </div>
+          <span class="text-[11px] text-gray-600 font-medium">Pedidos</span>
+        </button>
+        <button onclick="painel_administrativo_verRelatorios()" class="flex flex-col items-center gap-1.5 p-3 rounded-xl bg-gray-50 active:scale-95 transition-all hover:bg-marca-50">
+          <div class="w-10 h-10 rounded-full bg-teal-100 flex items-center justify-center">
+            <svg class="w-5 h-5 text-teal-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v2.25c0 .621-.504 1.125-1.125 1.125h-2.25A1.125 1.125 0 013 15.375v-2.25zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v8.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125v-8.25zM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z"/></svg>
+          </div>
+          <span class="text-[11px] text-gray-600 font-medium">Relatórios</span>
+        </button>
+        <button onclick="painel_administrativo_abrirConfiguracoes()" class="flex flex-col items-center gap-1.5 p-3 rounded-xl bg-gray-50 active:scale-95 transition-all hover:bg-marca-50">
+          <div class="w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center">
+            <svg class="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9.594 3.94c.09-.542.56-.94 1.11-.94h2.593c.55 0 1.02.398 1.11.94l.213 1.281c.063.374.313.686.645.87.074.04.147.083.22.127.324.196.72.257 1.075.124l1.217-.456a1.125 1.125 0 011.37.49l1.296 2.247a1.125 1.125 0 01-.26 1.431l-1.003 1.008c-.253.255-.427.577-.476.913l-.233 1.659c-.04.28-.234.53-.533.53h-1.452c-.299 0-.593-.25-.533-.53l-.233-1.659a1.875 1.875 0 01-.476-.913l-1.003-1.008a1.125 1.125 0 01-.26-1.431l1.296-2.247a1.125 1.125 0 011.37-.49l1.217.456c.355.133.75.072 1.076-.124a2.261 2.261 0 00.22-.127c.331-.184.582-.496.644-.87l.213-1.28z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+          </div>
+          <span class="text-[11px] text-gray-600 font-medium">Config.</span>
+        </button>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<script>
+var painel_administrativo_pedidos = [
+  { id: '#1023', cliente: 'Maria Oliveira', valor: 89.90, status: 'pago', data: '2025-06-16', livro: 'O Poder da Palavra', avatar: 'MO', cor: 'bg-rose-400' },
+  { id: '#1022', cliente: 'Carlos Mendes', valor: 149.90, status: 'pendente', data: '2025-06-15', livro: 'Reflexões Diárias', avatar: 'CM', cor: 'bg-blue-400' },
+  { id: '#1021', cliente: 'Ana Beatriz Lima', valor: 59.90, status: 'pago', data: '2025-06-15', livro: 'Palavras que Curam', avatar: 'AL', cor: 'bg-teal-400' },
+  { id: '#1020', cliente: 'Pedro Henrique', valor: 199.90, status: 'enviado', data: '2025-06-14', livro: 'Coleção Completa', avatar: 'PH', cor: 'bg-amber-400' },
+  { id: '#1019', cliente: 'Fernanda Costa', valor: 79.90, status: 'pago', data: '2025-06-14', livro: 'O Poder da Palavra', avatar: 'FC', cor: 'bg-purple-400' },
+  { id: '#1018', cliente: 'João Ricardo', valor: 129.90, status: 'cancelado', data: '2025-06-13', livro: 'Reflexões Diárias', avatar: 'JR', cor: 'bg-gray-400' },
+  { id: '#1017', cliente: 'Luciana Souza', valor: 89.90, status: 'pago', data: '2025-06-13', livro: 'Palavras que Curam', avatar: 'LS', cor: 'bg-indigo-400' },
+  { id: '#1016', cliente: 'Ricardo Santos', valor: 249.90, status: 'enviado', data: '2025-06-12', livro: 'Coleção Completa', avatar: 'RS', cor: 'bg-emerald-400' },
+  { id: '#1015', cliente: 'Patricia Almeida', valor: 69.90, status: 'pago', data: '2025-06-12', livro: 'O Poder da Palavra', avatar: 'PA', cor: 'bg-pink-400' },
+  { id: '#1014', cliente: 'Bruno Ferreira', valor: 159.90, status: 'pendente', data: '2025-06-11', livro: 'Reflexões Diárias', avatar: 'BF', cor: 'bg-cyan-400' }
+];
+
+function painel_administrativo_statusBadge(status) {
+  var map = {
+    'pago': '<span class="badge bg-green-100 text-green-700 text-[11px] px-2 py-0.5 rounded-full font-medium">Pago</span>',
+    'pendente': '<span class="badge bg-orange-100 text-orange-700 text-[11px] px-2 py-0.5 rounded-full font-medium">Pendente</span>',
+    'enviado': '<span class="badge bg-blue-100 text-blue-700 text-[11px] px-2 py-0.5 rounded-full font-medium">Enviado</span>',
+    'cancelado': '<span class="badge bg-red-100 text-red-700 text-[11px] px-2 py-0.5 rounded-full font-medium">Cancelado</span>'
+  };
+  return map[status] || status;
+}
+
+function painel_administrativo_renderizarPedidos(lista) {
+  var container = document.getElementById('painel-lista-pedidos');
+  var vazio = document.getElementById('painel-estado-vazio');
+  if (lista.length === 0) {
+    container.innerHTML = '';
+    vazio.classList.remove('hidden');
+    return;
+  }
+  vazio.classList.add('hidden');
+  container.innerHTML = lista.map(function(p) {
+    return '<button onclick="painel_administrativo_abrirDetalhePedido(\'' + p.id + '\')" class="w-full flex items-center gap-3 p-3 rounded-xl bg-gray-50 active:scale-[0.98] transition-all hover:bg-gray-100 text-left">' +
+      '<div class="w-9 h-9 rounded-full ' + p.cor + ' flex items-center justify-center text-white text-xs font-bold flex-shrink-0">' + p.avatar + '</div>' +
+      '<div class="flex-1 min-w-0">' +
+        '<div class="flex items-center justify-between">' +
+          '<p class="text-sm font-semibold text-gray-900 truncate">' + p.cliente + '</p>' +
+          '<p class="text-sm font-bold text-gray-900 ml-2 flex-shrink-0">' + brl(p.valor) + '</p>' +
+        '</div>' +
+        '<div class="flex items-center justify-between mt-1">' +
+          '<p class="text-xs text-gray-400">' + p.id + ' · ' + p.livro + '</p>' +
+          painel_administrativo_statusBadge(p.status) +
+        '</div>' +
+      '</div>' +
+    '</button>';
+  }).join('');
+}
+
+function painel_administrativo_buscarPedidos(termo) {
+  var t = termo.toLowerCase().trim();
+  if (!t) { painel_administrativo_renderizarPedidos(painel_administrativo_pedidos); return; }
+  var filtrados = painel_administrativo_pedidos.filter(function(p) {
+    return p.cliente.toLowerCase().indexOf(t) !== -1 || p.id.toLowerCase().indexOf(t) !== -1 || p.livro.toLowerCase().indexOf(t) !== -1;
+  });
+  painel_administrativo_renderizarPedidos(filtrados);
+}
+
+function painel_administrativo_abrirDetalhePedido(id) {
+  var pedido = painel_administrativo_pedidos.find(function(p) { return p.id === id; });
+  if (!pedido) return;
+  var html = '<div class="space-y-4">' +
+    '<div class="flex items-center gap-3 pb-3 border-b border-gray-100">' +
+      '<div class="w-12 h-12 rounded-full ' + pedido.cor + ' flex items-center justify-center text-white font-bold text-lg">' + pedido.avatar + '</div>' +
+      '<div><p class="font-semibold text-gray-900">' + pedido.cliente + '</p><p class="text-xs text-gray-500">' + pedido.id + '</p></div>' +
+    '</div>' +
+    '<div class="grid grid-cols-2 gap-3">' +
+      '<div class="bg-gray-50 rounded-lg p-3"><p class="text-[11px] text-gray-500">Valor</p><p class="text-sm font-bold text-gray-900">' + brl(pedido.valor) + '</p></div>' +
+      '<div class="bg-gray-50 rounded-lg p-3"><p class="text-[11px] text-gray-500">Data</p><p class="text-sm font-bold text-gray-900">' + dataBR(pedido.data) + '</p></div>' +
+      '<div class="bg-gray-50 rounded-lg p-3"><p class="text-[11px] text-gray-500">Status</p><p class="text-sm mt-0.5">' + painel_administrativo_statusBadge(pedido.status) + '</p></div>' +
+      '<div class="bg-gray-50 rounded-lg p-3"><p class="text-[11px] text-gray-500">Livro</p><p class="text-sm font-bold text-gray-900">' + pedido.livro + '</p></div>' +
+    '</div>' +
+    (pedido.status === 'pendente' ?
+      '<div class="flex gap-2 pt-2">' +
+        '<button onclick="painel_administrativo_aceitarPedido(\'' + pedido.id + '\')" class="flex-1 bg-green-500 text-white text-sm font-medium py-2.5 rounded-lg active:scale-95 transition-transform">Aceitar Pedido</button>' +
+        '<button onclick="painel_administrativo_recusarPedido(\'' + pedido.id + '\')" class="flex-1 bg-red-100 text-red-700 text-sm font-medium py-2.5 rounded-lg active:scale-95 transition-transform">Recusar</button>' +
+      '</div>' : '') +
+    (pedido.status === 'pago' ?
+      '<div class="flex gap-2 pt-2">' +
+        '<button onclick="painel_administrativo_marcarEnviado(\'' + pedido.id + '\')" class="flex-1 bg-marca-500 text-white text-sm font-medium py-2.5 rounded-lg active:scale-95 transition-transform">Marcar como Enviado</button>' +
+      '</div>' : '') +
+    (pedido.status === 'enviado' ?
+      '<div class="bg-green-50 rounded-lg p-3 flex items-center gap-2"><svg class="w-5 h-5 text-green-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg><span class="text-sm text-green-700 font-medium">Pedido enviado ao cliente</span></div>' : '') +
+    (pedido.status === 'cancelado' ?
+      '<div class="bg-red-50 rounded-lg p-3 flex items-center gap-2"><svg class="w-5 h-5 text-red-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg><span class="text-sm text-red-700 font-medium">Pedido cancelado</span></div>' : '') +
+  '</div>';
+  abrirModal(html, 'Detalhes do Pedido ' + pedido.id);
+}
+
+function painel_administrativo_aceitarPedido(id) {
+  var p = painel_administrativo_pedidos.find(function(x) { return x.id === id; });
+  if (p) { p.status = 'pago'; }
+  fecharModal();
+  painel_administrativo_renderizarPedidos(painel_administrativo_pedidos);
+  toast('Pedido ' + id + ' aceito com sucesso!', 'ok');
+}
+
+function painel_administrativo_recusarPedido(id) {
+  var p = painel_administrativo_pedidos.find(function(x) { return x.id === id; });
+  if (p) { p.status = 'cancelado'; }
+  fecharModal();
+  painel_administrativo_renderizarPedidos(painel_administrativo_pedidos);
+  toast('Pedido ' + id + ' recusado.', 'info');
+}
+
+function painel_administrativo_marcarEnviado(id) {
+  var p = painel_administrativo_pedidos.find(function(x) { return x.id === id; });
+  if (p) { p.status = 'enviado'; }
+  fecharModal();
+  painel_administrativo_renderizarPedidos(painel_administrativo_pedidos);
+  toast('Pedido ' + id + ' marcado como enviado.', 'ok');
+}
+
+function painel_administrativo_mostrarDetalheVendas() {
+  var html = '<div class="space-y-3">' +
+    '<div class="grid grid-cols-3 gap-2">' +
+      '<div class="bg-green-50 rounded-lg p-3 text-center"><p class="text-[11px] text-green-600">Hoje</p><p class="text-lg font-bold text-green-700">R$ 890</p></div>' +
+      '<div class="bg-blue-50 rounded-lg p-3 text-center"><p class="text-[11px] text-blue-600">Semana</p><p class="text-lg font-bold text-blue-700">R$ 4.280</p></div>' +
+      '<div class="bg-purple-50 rounded-lg p-3 text-center"><p class="text-[11px] text-purple-600">Mês</p><p class="text-lg font-bold text-purple-700">R$ 12.450</p></div>' +
+    '</div>' +
+    '<div class="bg-gray-50 rounded-lg p-3"><p class="text-xs text-gray-500 mb-1">Produto mais vendido</p><p class="text-sm font-bold text-gray-900">O Poder da Palavra</p><p class="text-xs text-gray-400">32 unidades vendidas</p></div>' +
+    '<div class="bg-gray-50 rounded-lg p-3"><p class="text-xs text-gray-500 mb-1">Ticket médio</p><p class="text-lg font-bold text-gray-900">R$ 114,50</p></div>' +
+    '<div class="bg-gray-50 rounded-lg p-3"><p class="text-xs text-gray-500 mb-1">Forma de pagamento mais usada</p><p class="text-sm font-bold text-gray-900">PIX (58%)</p><p class="text-xs text-gray-400">Cartão 32% · Boleto 10%</p></div>' +
+  '</div>';
+  abrirModal(html, 'Detalhes de Vendas');
+}
+
+function painel_administrativo_mostrarPedidosPendentes() {
+  var pendentes = painel_administrativo_pedidos.filter(function(p) { return p.status === 'pendente'; });
+  var html = '<div class="space-y-3">' +
+    '<p class="text-sm text-gray-600">Você tem <strong>' + pendentes.length + '</strong> pedido(s) aguardando aprovação.</p>' +
+    pendentes.map(function(p) {
+      return '<div class="flex items-center gap-3 p-3 bg-gray-50 rounded-lg">' +
+        '<div class="w-8 h-8 rounded-full ' + p.cor + ' flex items-center justify-center text-white text-xs font-bold">' + p.avatar + '</div>' +
+        '<div class="flex-1"><p class="text-sm font-semibold">' + p.cliente + '</p><p class="text-xs text-gray-400">' + p.id + ' · ' + p.livro + '</p></div>' +
+        '<p class="text-sm font-bold">' + brl(p.valor) + '</p>' +
+      '</div>';
+    }).join('') +
+    '<button onclick="painel_administrativo_aprovarTodosPendentes()" class="w-full bg-marca-500 text-white text-sm font-medium py-2.5 rounded-lg active:scale-95 transition-transform mt-2">Aprovar Todos</button>' +
+  '</div>';
+  abrirModal(html, 'Pedidos Pendentes (' + pendentes.length + ')');
+}
+
+function painel_administrativo_aprovarTodosPendentes() {
+  painel_administrativo_pedidos.forEach(function(p) { if (p.status === 'pendente') p.status = 'pago'; });
+  fecharModal();
+  painel_administrativo_renderizarPedidos(painel_administrativo_pedidos);
+  toast('Todos os pedidos pendentes foram aprovados!', 'ok');
+}
+
+function painel_administrativo_mostrarNovosLeitores() {
+  var html = '<div class="space-y-3">' +
+    '<p class="text-sm text-gray-600"><strong>+142</strong> novos leitores esta semana.</p>' +
+    '<div class="space-y-2">' +
+      '<div class="flex items-center gap-3 p-2 bg-gray-50 rounded-lg"><div class="w-8 h-8 rounded-full bg-rose-400 flex items-center justify-center text-white text-xs font-bold">MO</div><div><p class="text-sm font-medium">Maria Oliveira</p><p class="text-xs text-gray-400">Cadastrada há 2h</p></div></div>' +
+      '<div class="flex items-center gap-3 p-2 bg-gray-50 rounded-lg"><div class="w-8 h-8 rounded-full bg-blue-400 flex items-center justify-center text-white text-xs font-bold">CM</div><div><p class="text-sm font-medium">Carlos Mendes</p><p class="text-xs text-gray-400">Cadastrado há 5h</p></div></div>' +
+      '<div class="flex items-center gap-3 p-2 bg-gray-50 rounded-lg"><div class="w-8 h-8 rounded-full bg-teal-400 flex items-center justify-center text-white text-xs font-bold">AL</div><div><p class="text-sm font-medium">Ana Beatriz Lima</p><p class="text-xs text-gray-400">Cadastrada há 8h</p></div></div>' +
+      '<div class="flex items-center gap-3 p-2 bg-gray-50 rounded-lg"><div class="w-8 h-8 rounded-full bg-purple-400 flex items-center justify-center text-white text-xs font-bold">FC</div><div><p class="text-sm font-medium">Fernanda Costa</p><p class="text-xs text-gray-400">Cadastrada há 12h</p></div></div>' +
+    '</div>' +
+    '<div class="bg-green-50 rounded-lg p-3 flex items-center gap-2"><svg class="w-5 h-5 text-green-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg><span class="text-sm text-green-700 font-medium">+23% vs semana anterior</span></div>' +
+  '</div>';
+  abrirModal(html, 'Novos Leitores');
+}
+
+function painel_administrativo_mostrarVisualizacoes() {
+  var html = '<div class="space-y-3">' +
+    '<div class="grid grid-cols-2 gap-2">' +
+      '<div class="bg-blue-50 rounded-lg p-3 text-center"><p class="text-[11px] text-blue-600">Total</p><p class="text-lg font-bold text-blue-700">3.248</p></div>' +
+      '<div class="bg-green-50 rounded-lg p-3 text-center"><p class="text-[11px] text-green-600">Esta semana</p><p class="text-lg font-bold text-green-700">+580</p></div>' +
+    '</div>' +
+    '<div class="bg-gray-50 rounded-lg p-3"><p class="text-xs text-gray-500 mb-2">Origem do tráfego</p>' +
+      '<div class="space-y-1.5">' +
+        '<div class="flex items-center justify-between"><span class="text-xs">App direto</span><span class="text-xs font-medium">45%</span></div><div class="w-full bg-gray-200 rounded-full h-1.5"><div class="bg-marca-500 h-1.5 rounded-full" style="width:45%"></div></div>' +
+        '<div class="flex items-center justify-between"><span class="text-xs">Redes sociais</span><span class="text-xs font-medium">30%</span></div><div class="w-full bg-gray-200 rounded-full h-1.5"><div class="bg-green-500 h-1.5 rounded-full" style="width:30%"></div></div>' +
+        '<div class="flex items-center justify-between"><span class="text-xs">Busca orgânica</span><span class="text-xs font-medium">15%</span></div><div class="w-full bg-gray-200 rounded-full h-1.5"><div class="bg-orange-500 h-1.5 rounded-full" style="width:15%"></div></div>' +
+        '<div class="flex items-center justify-between"><span class="text-xs">Outros</span><span class="text-xs font-medium">10%</span></div><div class="w-full bg-gray-200 rounded-full h-1.5"><div class="bg-gray-400 h-1.5 rounded-full" style="width:10%"></div></div>' +
+      '</div>' +
+    '</div>' +
+    '<div class="bg-gray-50 rounded-lg p-3"><p class="text-xs text-gray-500">Notícia mais lida</p><p class="text-sm font-bold text-gray-900">"Reflexões para o Dia a Dia"</p><p class="text-xs text-gray-400">1.240 visualizações</p></div>' +
+  '</div>';
+  abrirModal(html, 'Visualizações');
+}
+
+function painel_administrativo_filtrarPedidos() {
+  var html = '<div class="space-y-3">' +
+    '<p class="text-sm text-gray-600 mb-2">Filtrar por status:</p>' +
+    '<div class="flex flex-wrap gap-2">' +
+      '<button onclick="painel_administrativo_aplicarFiltro(\'todos\')" class="px-4 py-2 rounded-lg bg-marca-500 text-white text-sm font-medium active:scale-95 transition-transform">Todos</button>' +
+      '<button onclick="painel_administrativo_aplicarFiltro(\'pago\')" class="px-4 py-2 rounded-lg bg-green-100 text-green-700 text-sm font-medium active:scale-95 transition-transform">Pagos</button>' +
+      '<button onclick="painel_administrativo_aplicarFiltro(\'pendente\')" class="px-4 py-2 rounded-lg bg-orange-100 text-orange-700 text-sm font-medium active:scale-95 transition-transform">Pendentes</button>' +
+      '<button onclick="painel_administrativo_aplicarFiltro(\'enviado\')" class="px-4 py-2 rounded-lg bg-blue-100 text-blue-700 text-sm font-medium active:scale-95 transition-transform">Enviados</button>' +
+      '<button onclick="painel_administrativo_aplicarFiltro(\'cancelado\')" class="px-4 py-2 rounded-lg bg-red-100 text-red-700 text-sm font-medium active:scale-95 transition-transform">Cancelados</button>' +
+    '</div>' +
+  '</div>';
+  abrirModal(html, 'Filtrar Pedidos');
+}
+
+function painel_administrativo_aplicarFiltro(status) {
+  fecharModal();
+  if (status === 'todos') {
+    painel_administrativo_renderizarPedidos(painel_administrativo_pedidos);
+  } else {
+    var filtrados = painel_administrativo_pedidos.filter(function(p) { return p.status === status; });
+    painel_administrativo_renderizarPedidos(filtrados);
+  }
+  toast(status === 'todos' ? 'Mostrando todos os pedidos' : 'Filtrado: ' + status, 'info');
+}
+
+function painel_administrativo_verTodosPedidos() {
+  mostrarTela('meu-carrinho');
+}
+
+function painel_administrativo_verRelatorios() {
+  var html = '<div class="space-y-3">' +
+    '<div class="grid grid-cols-2 gap-2">' +
+      '<button onclick="fecharModal(); toast(\'Relatório gerado com sucesso!\', \'ok\')" class="p-4 bg-blue-50 rounded-xl text-left active:scale-95 transition-transform">' +
+        '<svg class="w-6 h-6 text-marca-500 mb-2" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v2.25c0 .621-.504 1.125-1.125 1.125h-2.25A1.125 1.125 0 013 15.375v-2.25zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v8.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125v-8.25zM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z"/></svg>' +
+        '<p class="text-sm font-semibold text-gray-900">Vendas</p><p class="text-xs text-gray-500">Relatório mensal</p>' +
+      '</button>' +
+      '<button onclick="fecharModal(); toast(\'Relatório gerado com sucesso!\', \'ok\')" class="p-4 bg-green-50 rounded-xl text-left active:scale-95 transition-transform">' +
+        '<svg class="w-6 h-6 text-green-600 mb-2" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19.128a9.001 9.001 0 001.424-4.95 9 9 0 00-4.015-8.879M15 19.128A9.001 9.001 0 019.576 14.18M15 19.128V14.25m0 0a48.111 48.111 0 00-1.878-.878M15 19.128v-4.5m0 4.5h.008M9.576 14.18a48.04 48.04 0 00-1.878-.878M9.576 14.18a9 9 0 015.048-4.95M9.576 14.18v-4.5m0 4.5h-.008m4.024-4.878A9 9 0 0112 3c2.255 0 4.316.926 5.786 2.446M12 3a9 9 0 00-5.786 2.446"/></svg>' +
+        '<p class="text-sm font-semibold text-gray-900">Leitores</p><p class="text-xs text-gray-500">Crescimento</p>' +
+      '</button>' +
+      '<button onclick="fecharModal(); toast(\'Relatório gerado com sucesso!\', \'ok\')" class="p-4 bg-purple-50 rounded-xl text-left active:scale-95 transition-transform">' +
+        '<svg class="w-6 h-6 text-purple-600 mb-2" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>' +
+        '<p class="text-sm font-semibold text-gray-900">Visualizações</p><p class="text-xs text-gray-500">Conteúdo popular</p>' +
+      '</button>' +
+      '<button onclick="fecharModal(); toast(\'Relatório gerado com sucesso!\', \'ok\')" class="p-4 bg-orange-50 rounded-xl text-left active:scale-95 transition-transform">' +
+        '<svg class="w-6 h-6 text-orange-600 mb-2" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A9 9 0 006 18c1.052 0 2.062-.18 3-.512m12-5.122A8.967 8.967 0 0118 3.75c1.052 0 2.062.18 3 .512v14.25A9 9 0 0118 18c-1.052 0-2.062-.18-3-.512m-9 0v-3m9 3v3"/></svg>' +
+        '<p class="text-sm font-semibold text-gray-900">Livros</p><p class="text-xs text-gray-500">Desempenho</p>' +
+      '</button>' +
+    '</div>' +
+  '</div>';
+  abrirModal(html, 'Relatórios');
+}
+
+function painel_administrativo_editarPalavraDia() {
+  mostrarTela('palavra-do-dia');
+}
+
+function painel_administrativo_abrirConfiguracoes() {
+  var html = '<div class="space-y-4">' +
+    '<div class="space-y-3">' +
+      '<div class="flex items-center justify-between p-3 bg-gray-50 rounded-lg">' +
+        '<div><p class="text-sm font-medium text-gray-900">Notificações Push</p><p class="text-xs text-gray-500">Alertas de novos pedidos</p></div>' +
+        '<label class="relative inline-flex items-center cursor-pointer"><input type="checkbox" checked class="sr-only peer" onchange="toast(this.checked ? \'Notificações ativadas\' : \'Notificações desativadas\', \'info\')"><div class="w-9 h-5 bg-marca-500 peer-focus:ring-2 peer-focus:ring-marca-300 rounded-full peer peer-checked:after:translate-x-full after:content-[\'\'] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-4 after:w-4 after:transition-all"></div></label>' +
+      '</div>' +
+      '<div class="flex items-center justify-between p-3 bg-gray-50 rounded-lg">' +
+        '<div><p class="text-sm font-medium text-gray-900">Aprovação Automática</p><p class="text-xs text-gray-500">Aprovar pedidos sem revisão</p></div>' +
+        '<label class="relative inline-flex items-center cursor-pointer"><input type="checkbox" class="sr-only peer" onchange="toast(this.checked ? \'Aprovação automática ativada\' : \'Aprovação automática desativada\', \'info\')"><div class="w-9 h-5 bg-gray-300 peer-focus:ring-2 peer-focus:ring-marca-300 rounded-full peer peer-checked:after:translate-x-full after:content-[\'\'] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-marca-500"></div></label>' +
+      '</div>' +
+      '<div class="p-3 bg-gray-50 rounded-lg">' +
+        '<p class="text-sm font-medium text-gray-900 mb-1">Moeda da Loja</p>' +
+        '<select class="w-full mt-1 p-2 text-sm border border-gray-200 rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-marca-500">' +
+          '<option selected>BRL - Real (R$)</option><option>USD - Dólar ($)</option><option>EUR - Euro (€)</option>' +
+        '</select>' +
+      '</div>' +
+      '<div class="p-3 bg-gray-50 rounded-lg">' +
+        '<p class="text-sm font-medium text-gray-900 mb-1">Nome da Loja</p>' +
+        '<input type="text" value="Editora Palavras" class="w-full mt-1 p-2 text-sm border border-gray-200 rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-marca-500">' +
+      '</div>' +
+    '</div>' +
+    '<button onclick="fecharModal(); toast(\'Configurações salvas com sucesso!\', \'ok\')" class="w-full bg-marca-500 text-white text-sm font-medium py-2.5 rounded-lg active:scale-95 transition-transform">Salvar Alterações</button>' +
+  '</div>';
+  abrirModal(html, 'Configurações');
+}
+
+painel_administrativo_renderizarPedidos(painel_administrativo_pedidos);
+</script>
+
     <!-- TELAS -->
 
     </div>
