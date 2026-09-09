@@ -962,6 +962,164 @@
 })();
 </script>
 
+    <section data-tela="palavra-do-dia" class="hidden">
+      <div class="px-5 pt-2 pb-6 space-y-5">
+        <div class="flex items-start justify-between">
+          <div class="space-y-0.5">
+            <h1 class="text-xl font-bold font-display text-marca-900 leading-tight">Palavra do Dia</h1>
+            <p class="text-xs text-marca-700/60 font-body" id="palavra_data_hoje"></p>
+          </div>
+          <button onclick="palavra_do_dia_toggle_favorito()" id="btn_favorito" class="mt-1 w-10 h-10 flex items-center justify-center rounded-full bg-white shadow-sm border border-marca-100 active:scale-90 transition-all duration-200 hover:shadow-md" aria-label="Favoritar palavra">
+            <svg id="icone_coracao" class="w-5 h-5 transition-colors duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
+          </button>
+        </div>
+        <div class="bg-white rounded-2xl shadow-sm border border-marca-100/80 overflow-hidden">
+          <div class="bg-gradient-to-br from-marca-800 via-marca-700 to-marca-600 px-5 pt-7 pb-8 text-center relative">
+            <div class="absolute top-3 left-3">
+              <span class="badge bg-white/15 text-white text-[10px] font-semibold px-2.5 py-0.5 rounded-full backdrop-blur-sm">Substantivo Feminino</span>
+            </div>
+            <div class="space-y-2">
+              <p class="text-5xl font-display font-extrabold text-white tracking-tight leading-none">Resiliência</p>
+              <p class="text-marca-200 text-sm font-body font-medium">/re.si.li.ên.cia/</p>
+            </div>
+            <div class="mt-4 flex justify-center">
+              <div class="h-px w-12 bg-white/20 rounded-full"></div>
+            </div>
+          </div>
+          <div class="px-5 pt-5 pb-4 space-y-4">
+            <div>
+              <h2 class="text-xs font-semibold text-marca-700/60 uppercase tracking-wider font-body mb-2">Definição</h2>
+              <p class="text-sm text-marca-900 leading-relaxed font-body text-justify">Capacidade de um indivíduo ou sistema de se adaptar positivamente a situações adversas, superando obstáculos e mantendo o equilíbrio emocional e psicológico diante de crises, pressões ou eventos traumáticos.</p>
+            </div>
+            <div class="h-px bg-marca-100"></div>
+            <div class="grid grid-cols-2 gap-3">
+              <div class="bg-marca-50 rounded-xl px-3 py-2.5 space-y-0.5">
+                <p class="text-[10px] text-marca-700/50 uppercase tracking-wider font-body font-semibold">Silabação</p>
+                <p class="text-sm text-marca-900 font-body font-medium">re-si-li-ên-cia</p>
+              </div>
+              <div class="bg-marca-50 rounded-xl px-3 py-2.5 space-y-0.5">
+                <p class="text-[10px] text-marca-700/50 uppercase tracking-wider font-body font-semibold">Classe Gramatical</p>
+                <p class="text-sm text-marca-900 font-body font-medium">Substantivo Feminino</p>
+              </div>
+            </div>
+            <div>
+              <h2 class="text-xs font-semibold text-marca-700/60 uppercase tracking-wider font-body mb-2">Sinônimos</h2>
+              <div class="flex flex-wrap gap-1.5">
+                <span class="bg-marca-50 text-marca-800 text-xs font-medium px-2.5 py-1 rounded-lg font-body border border-marca-100">Superação</span>
+                <span class="bg-marca-50 text-marca-800 text-xs font-medium px-2.5 py-1 rounded-lg font-body border border-marca-100">Força Interior</span>
+                <span class="bg-marca-50 text-marca-800 text-xs font-medium px-2.5 py-1 rounded-lg font-body border border-marca-100">Resistência</span>
+                <span class="bg-marca-50 text-marca-800 text-xs font-medium px-2.5 py-1 rounded-lg font-body border border-marca-100">Tenacidade</span>
+                <span class="bg-marca-50 text-marca-800 text-xs font-medium px-2.5 py-1 rounded-lg font-body border border-marca-100">Persistência</span>
+              </div>
+            </div>
+            <div class="h-px bg-marca-100"></div>
+            <div>
+              <h2 class="text-xs font-semibold text-marca-700/60 uppercase tracking-wider font-body mb-2">Exemplo de Uso</h2>
+              <p class="text-sm text-marca-800 leading-relaxed font-body italic">"A resiliência daquela comunidade comoveu a todos, pois mesmo após a tragédia, eles reconstruíram suas vidas com esperança e união."</p>
+            </div>
+          </div>
+        </div>
+        <div class="bg-gradient-to-r from-marca-50 to-white rounded-2xl border border-marca-100/80 p-5 relative overflow-hidden">
+          <div class="absolute top-0 left-0 w-1 h-full bg-marca-500 rounded-r-full"></div>
+          <div class="flex items-start gap-3">
+            <div class="mt-0.5 flex-shrink-0">
+              <svg class="w-6 h-6 text-marca-500" fill="currentColor" viewBox="0 0 24 24"><path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/></svg>
+            </div>
+            <div class="space-y-2">
+              <p class="text-[10px] font-bold text-marca-500 uppercase tracking-widest font-body">Reflexão do Dia</p>
+              <p class="text-sm text-marca-900 leading-relaxed font-body">"A resiliência não é sobre nunca cair, mas sobre sempre se levantar. Cada obstáculo é uma oportunidade de fortalecer seu caráter e descobrir um potencial que você não sabia que tinha."</p>
+              <p class="text-xs text-marca-700/50 font-body font-medium">— Ana Beatriz Luz, escritora</p>
+            </div>
+          </div>
+        </div>
+        <div class="bg-white rounded-2xl shadow-sm border border-marca-100/80 p-4">
+          <h2 class="text-xs font-semibold text-marca-700/60 uppercase tracking-wider font-body mb-3">Palavras Anteriores</h2>
+          <div class="space-y-2" id="lista_palavras_anteriores">
+            <button onclick="palavra_do_dia_ver_anterior('etimologia')" class="w-full flex items-center justify-between p-3 bg-marca-50/50 hover:bg-marca-50 rounded-xl transition-colors duration-150 group text-left">
+              <div class="flex items-center gap-3">
+                <div class="w-8 h-8 rounded-lg bg-marca-100 flex items-center justify-center"><span class="text-marca-700 font-display font-bold text-xs">E</span></div>
+                <div><p class="text-sm font-medium text-marca-900 font-body group-hover:text-marca-600 transition-colors">Etimologia</p><p class="text-xs text-marca-700/50 font-body">12 de Janeiro, 2025</p></div>
+              </div>
+              <svg class="w-4 h-4 text-marca-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+            </button>
+            <button onclick="palavra_do_dia_ver_anterior('efêmero')" class="w-full flex items-center justify-between p-3 bg-marca-50/50 hover:bg-marca-50 rounded-xl transition-colors duration-150 group text-left">
+              <div class="flex items-center gap-3">
+                <div class="w-8 h-8 rounded-lg bg-marca-100 flex items-center justify-center"><span class="text-marca-700 font-display font-bold text-xs">Ef</span></div>
+                <div><p class="text-sm font-medium text-marca-900 font-body group-hover:text-marca-600 transition-colors">Efêmero</p><p class="text-xs text-marca-700/50 font-body">11 de Janeiro, 2025</p></div>
+              </div>
+              <svg class="w-4 h-4 text-marca-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+            </button>
+            <button onclick="palavra_do_dia_ver_anterior('perspicácia')" class="w-full flex items-center justify-between p-3 bg-marca-50/50 hover:bg-marca-50 rounded-xl transition-colors duration-150 group text-left">
+              <div class="flex items-center gap-3">
+                <div class="w-8 h-8 rounded-lg bg-marca-100 flex items-center justify-center"><span class="text-marca-700 font-display font-bold text-xs">P</span></div>
+                <div><p class="text-sm font-medium text-marca-900 font-body group-hover:text-marca-600 transition-colors">Perspicácia</p><p class="text-xs text-marca-700/50 font-body">10 de Janeiro, 2025</p></div>
+              </div>
+              <svg class="w-4 h-4 text-marca-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+            </button>
+          </div>
+        </div>
+        <button onclick="palavra_do_dia_compartilhar()" class="w-full flex items-center justify-center gap-2.5 bg-marca-500 hover:bg-marca-400 active:bg-marca-600 text-white font-semibold font-body text-sm py-3.5 px-6 rounded-2xl shadow-lg shadow-marca-500/20 active:scale-[0.97] transition-all duration-200 hover:shadow-xl hover:shadow-marca-500/30">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.5 9 12c0-.5-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"/></svg>
+          Compartilhar Palavra
+        </button>
+        <button onclick="mostrarTela('catalogo-de-livros')" class="w-full flex items-center justify-center gap-2 bg-white border border-marca-200 text-marca-700 font-semibold font-body text-sm py-3.5 px-6 rounded-2xl hover:bg-marca-50 active:scale-[0.97] transition-all duration-200">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 4.168 6.253v13C4.168 19.223 4.5 20 7.5 20s3.332-.777 3.332-1.747m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 3.332 1.253v13C19.832 19.223 19.5 20 16.5 20s-3.332-.777-3.332-1.747"/></svg>
+          Ver Livros Relacionados
+        </button>
+      </div>
+      <div id="palavra_do_dia_modal_anterior" class="hidden fixed inset-0 bg-black/50 z-50 flex items-end sm:items-center justify-center" onclick="if(event.target===this)palavra_do_dia_fechar_modal()">
+        <div class="bg-white rounded-t-3xl sm:rounded-3xl w-full max-w-[430px] max-h-[75vh] overflow-y-auto shadow-2xl animate-slide-up" id="palavra_do_dia_modal_content"></div>
+      </div>
+      <div id="palavra_do_dia_share_sheet" class="hidden fixed inset-0 bg-black/50 z-50 flex items-end justify-center" onclick="if(event.target===this)palavra_do_dia_fechar_share()">
+        <div class="bg-white rounded-t-3xl w-full max-w-[430px] shadow-2xl animate-slide-up">
+          <div class="flex items-center justify-center pt-3 pb-1"><div class="w-10 h-1 bg-marca-200 rounded-full"></div></div>
+          <p class="text-center text-sm font-semibold text-marca-900 font-display py-3">Compartilhar Palavra</p>
+          <div class="grid grid-cols-4 gap-4 px-6 pb-6 pt-2">
+            <button onclick="palavra_do_dia_compartilhar_whatsapp()" class="flex flex-col items-center gap-1.5 p-3 rounded-2xl hover:bg-green-50 transition-colors"><div class="w-12 h-12 rounded-full bg-green-500 flex items-center justify-center"><svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></div><span class="text-[11px] text-marca-700 font-body font-medium">WhatsApp</span></button>
+            <button onclick="palavra_do_dia_compartilhar_copiar()" class="flex flex-col items-center gap-1.5 p-3 rounded-2xl hover:bg-marca-50 transition-colors"><div class="w-12 h-12 rounded-full bg-marca-500 flex items-center justify-center"><svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg></div><span class="text-[11px] text-marca-700 font-body font-medium">Copiar</span></button>
+            <button onclick="palavra_do_dia_compartilhar_instagram()" class="flex flex-col items-center gap-1.5 p-3 rounded-2xl hover:bg-pink-50 transition-colors"><div class="w-12 h-12 rounded-full bg-gradient-to-br from-purple-600 via-pink-500 to-orange-400 flex items-center justify-center"><svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" stroke-width="2"/><circle cx="12" cy="12" r="5" stroke-width="2"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg></div><span class="text-[11px] text-marca-700 font-body font-medium">Instagram</span></button>
+            <button onclick="palavra_do_dia_compartilhar_outros()" class="flex flex-col items-center gap-1.5 p-3 rounded-2xl hover:bg-marca-50 transition-colors"><div class="w-12 h-12 rounded-full bg-marca-700 flex items-center justify-center"><svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z"/></svg></div><span class="text-[11px] text-marca-700 font-body font-medium">Outros</span></button>
+          </div>
+          <div class="pb-5"></div>
+        </div>
+      </div>
+      <script>
+        (function() {
+          var favoritada = false;
+          function dataBR(iso) { var d = new Date(iso+'T12:00:00'); return d.toLocaleDateString('pt-BR', { day:'numeric', month:'long', year:'numeric' }); }
+          function init() {
+            var hoje = new Date(); var dia = String(hoje.getDate()).padStart(2,'0'); var mes = String(hoje.getMonth()+1).padStart(2,'0'); var ano = hoje.getFullYear();
+            var el = document.getElementById('palavra_data_hoje'); if(el) el.textContent = dia + ' de ' + hoje.toLocaleDateString('pt-BR',{month:'long'}) + ' de ' + ano;
+          }
+          window.palavra_do_dia_toggle_favorito = function() {
+            favoritada = !favoritada;
+            var btn = document.getElementById('btn_favorito'); var icone = document.getElementById('icone_coracao');
+            if (favoritada) { icone.setAttribute('fill','#EF4444'); icone.classList.add('text-red-500'); icone.classList.remove('text-marca-400'); btn.classList.add('border-red-200','bg-red-50'); btn.classList.remove('border-marca-100','bg-white'); toast('Palavra adicionada aos favoritos','ok'); }
+            else { icone.setAttribute('fill','none'); icone.classList.remove('text-red-500'); icone.classList.add('text-marca-400'); btn.classList.remove('border-red-200','bg-red-50'); btn.classList.add('border-marca-100','bg-white'); toast('Palavra removida dos favoritos','info'); }
+          };
+          window.palavra_do_dia_compartilhar = function() { var el = document.getElementById('palavra_do_dia_share_sheet'); if(el) el.classList.remove('hidden'); };
+          window.palavra_do_dia_fechar_share = function() { var el = document.getElementById('palavra_do_dia_share_sheet'); if(el) el.classList.add('hidden'); };
+          window.palavra_do_dia_compartilhar_copiar = function() {
+            var texto = '📖 Palavra do Dia: Resiliência\n\n"Capacidade de se adaptar positivamente a situações adversas, superando obstáculos e mantendo o equilíbrio emocional e psicológico diante de crises."\n\n💡 Reflexão: "A resiliência não é sobre nunca cair, mas sobre sempre se levantar."';
+            if(navigator.clipboard){ navigator.clipboard.writeText(texto).then(function(){ toast('Texto copiado para a área de transferência','ok'); }); } else { toast('Copie o texto manualmente','info'); }
+            window.palavra_do_dia_fechar_share();
+          };
+          window.palavra_do_dia_compartilhar_whatsapp = function() { window.open('https://wa.me/?text=' + encodeURIComponent('📖 Palavra do Dia: Resiliência — "A resiliência não é sobre nunca cair, mas sobre sempre se levantar."'), '_blank'); window.palavra_do_dia_fechar_share(); toast('Abrindo WhatsApp...','info'); };
+          window.palavra_do_dia_compartilhar_instagram = function() { window.palavra_do_dia_fechar_share(); toast('Compartilhe nos Stories do Instagram','info'); };
+          window.palavra_do_dia_compartilhar_outros = function() { window.palavra_do_dia_fechar_share(); toast('Compartilhamento nativo indisponível no momento','info'); };
+          window.palavra_do_dia_fechar_modal = function() { var el = document.getElementById('palavra_do_dia_modal_anterior'); if(el) el.classList.add('hidden'); document.body.style.overflow=''; };
+          window.palavra_do_dia_ver_anterior = function(palavra) {
+            var dados = { 'etimologia': { palavra:'Etimologia', classe:'Substantivo Feminino', definicao:'Estudo da origem e da formação das palavras, investigando a procedência e a evolução histórica dos vocábulos de uma língua ao longo do tempo.', reflexao:'"Cada palavra carrega em si a história de milhares de anos de evolução humana."', exemplo:'"A etimologia revela que a palavra "universidade" vem do latim "universitas", que significa "totalidade" ou "conjunto".', autor:'— Prof. Carlos Mendes, linguista' }, 'efêmero': { palavra:'Efêmero', classe:'Adjetivo', definicao:'Que dura pouco tempo; passageiro, transitório, temporário. Aquilo que existe ou acontece por um curto período e logo desaparece.', reflexao:'"A beleza do efêmero está na sua capacidade de nos ensinar a valorizar cada momento como único e insubstituível."', exemplo:'"A borboleta efêmera vive apenas um dia, mas nesse dia, ela voa mais bonita que qualquer outra criatura."', autor:'— Clarice L., escritora' }, 'perspicácia': { palavra:'Perspicácia', classe:'Substantivo Feminino', definicao:'Qualidade de quem é perspicaz; capacidade de percepção aguçada, de compreensão rápida e de discernimento fino diante de situações complexas.', reflexao:'"A perspicácia é a arte de ver além do óbvio, de enxergar o invisível e de compreender o incompreensível."', exemplo:'"A perspicácia do detetive permitiu que ele resolvesse o caso em tempo recorde."', autor:'— Roberto R., analista' } };
+            var d = dados[palavra] || dados['etimologia'];
+            var html = '<div class="p-5 space-y-4"><div class="flex items-center justify-between"><span class="badge bg-marca-100 text-marca-700 text-[10px] font-semibold px-2.5 py-0.5 rounded-full">' + d.classe + '</span><button onclick="palavra_do_dia_fechar_modal()" class="w-8 h-8 flex items-center justify-center rounded-full hover:bg-marca-50 transition-colors"><svg class="w-5 h-5 text-marca-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg></button></div><div class="bg-gradient-to-br from-marca-800 to-marca-600 rounded-2xl px-5 py-6 text-center"><p class="text-3xl font-display font-extrabold text-white">' + d.palavra + '</p></div><div class="space-y-3"><div><p class="text-xs font-semibold text-marca-700/60 uppercase tracking-wider font-body mb-1">Definição</p><p class="text-sm text-marca-900 leading-relaxed font-body">' + d.definicao + '</p></div><div class="h-px bg-marca-100"></div><div class="bg-marca-50 rounded-xl p-4 border-l-2 border-marca-500 space-y-1"><p class="text-[10px] font-bold text-marca-500 uppercase tracking-widest font-body">Reflexão</p><p class="text-sm text-marca-800 leading-relaxed font-body italic">' + d.reflexao + '</p><p class="text-xs text-marca-700/50 font-body font-medium pt-1">' + d.autor + '</p></div><div><p class="text-xs font-semibold text-marca-700/60 uppercase tracking-wider font-body mb-1">Exemplo</p><p class="text-sm text-marca-800 leading-relaxed font-body italic">' + d.exemplo + '</p></div></div></div>';
+            abrirModal(html, 'Palavra Anterior');
+            document.body.style.overflow='hidden';
+          };
+          init();
+        })();
+      </script>
+    </section>
+
     <!-- TELAS -->
 
     </div>
