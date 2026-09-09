@@ -1815,6 +1815,376 @@
       </script>
     </section>
 
+    <section data-tela="meu-carrinho" class="hidden">
+      <div class="max-w-lg mx-auto px-4 pt-2 pb-24 min-h-screen">
+
+        <!-- Cabeçalho da tela -->
+        <div class="mb-4">
+          <h1 class="font-display text-2xl font-bold text-marca-900 tracking-tight">Meu Carrinho</h1>
+          <p class="text-sm text-gray-500 mt-0.5"><span id="carrinho-contador-header">3</span> itens no carrinho</p>
+        </div>
+
+        <!-- Lista de itens -->
+        <div id="carrinho-lista" class="space-y-3 mb-5">
+
+          <!-- Item 1 -->
+          <div class="carrinho-item card flex gap-3 p-3 group" data-id="1">
+            <button onclick="meu_carrinho_remover(this)" class="absolute top-2 right-2 w-6 h-6 flex items-center justify-center rounded-full bg-red-50 text-red-400 opacity-0 group-hover:opacity-100 transition-opacity duration-200 active:scale-90 z-10" aria-label="Remover item">
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+            </button>
+            <div class="w-16 h-22 rounded-lg bg-gradient-to-br from-amber-100 to-orange-200 flex-shrink-0 flex items-center justify-center cursor-pointer" onclick="mostrarTela('detalhe-do-livro')">
+              <span class="font-display text-xl font-bold text-amber-800">OA</span>
+            </div>
+            <div class="flex-1 min-w-0 pr-6">
+              <h3 class="font-display font-semibold text-sm text-marca-900 truncate leading-snug">O Alquimista</h3>
+              <p class="text-xs text-gray-500 truncate">Paulo Coelho</p>
+              <div class="flex items-center justify-between mt-2">
+                <div class="flex items-center gap-1.5 border border-gray-200 rounded-lg overflow-hidden">
+                  <button onclick="meu_carrinho_alterarQtd(this, -1)" class="w-7 h-7 flex items-center justify-center text-gray-500 hover:bg-gray-50 active:scale-90 transition-all text-sm font-bold">−</button>
+                  <span class="carrinho-qtd text-xs font-semibold w-6 text-center text-marca-900">1</span>
+                  <button onclick="meu_carrinho_alterarQtd(this, 1)" class="w-7 h-7 flex items-center justify-center text-gray-500 hover:bg-gray-50 active:scale-90 transition-all text-sm font-bold">+</button>
+                </div>
+                <span class="text-sm font-bold text-marca-900">R$ 29,90</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Item 2 -->
+          <div class="carrinho-item card flex gap-3 p-3 group" data-id="2">
+            <button onclick="meu_carrinho_remover(this)" class="absolute top-2 right-2 w-6 h-6 flex items-center justify-center rounded-full bg-red-50 text-red-400 opacity-0 group-hover:opacity-100 transition-opacity duration-200 active:scale-90 z-10" aria-label="Remover item">
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+            </button>
+            <div class="w-16 h-22 rounded-lg bg-gradient-to-br from-emerald-100 to-teal-200 flex-shrink-0 flex items-center justify-center cursor-pointer" onclick="mostrarTela('detalhe-do-livro')">
+              <span class="font-display text-xl font-bold text-emerald-800">GS</span>
+            </div>
+            <div class="flex-1 min-w-0 pr-6">
+              <h3 class="font-display font-semibold text-sm text-marca-900 truncate leading-snug">Grande Sertão: Veredas</h3>
+              <p class="text-xs text-gray-500 truncate">João Guimarães Rosa</p>
+              <div class="flex items-center justify-between mt-2">
+                <div class="flex items-center gap-1.5 border border-gray-200 rounded-lg overflow-hidden">
+                  <button onclick="meu_carrinho_alterarQtd(this, -1)" class="w-7 h-7 flex items-center justify-center text-gray-500 hover:bg-gray-50 active:scale-90 transition-all text-sm font-bold">−</button>
+                  <span class="carrinho-qtd text-xs font-semibold w-6 text-center text-marca-900">1</span>
+                  <button onclick="meu_carrinho_alterarQtd(this, 1)" class="w-7 h-7 flex items-center justify-center text-gray-500 hover:bg-gray-50 active:scale-90 transition-all text-sm font-bold">+</button>
+                </div>
+                <span class="text-sm font-bold text-marca-900">R$ 49,90</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Item 3 -->
+          <div class="carrinho-item card flex gap-3 p-3 group" data-id="3">
+            <button onclick="meu_carrinho_remover(this)" class="absolute top-2 right-2 w-6 h-6 flex items-center justify-center rounded-full bg-red-50 text-red-400 opacity-0 group-hover:opacity-100 transition-opacity duration-200 active:scale-90 z-10" aria-label="Remover item">
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+            </button>
+            <div class="w-16 h-22 rounded-lg bg-gradient-to-br from-rose-100 to-pink-200 flex-shrink-0 flex items-center justify-center cursor-pointer" onclick="mostrarTela('detalhe-do-livro')">
+              <span class="font-display text-xl font-bold text-rose-800">AP</span>
+            </div>
+            <div class="flex-1 min-w-0 pr-6">
+              <h3 class="font-display font-semibold text-sm text-marca-900 truncate leading-snug">A Paixão Segundo G.H.</h3>
+              <p class="text-xs text-gray-500 truncate">Clarice Lispector</p>
+              <div class="flex items-center justify-between mt-2">
+                <div class="flex items-center gap-1.5 border border-gray-200 rounded-lg overflow-hidden">
+                  <button onclick="meu_carrinho_alterarQtd(this, -1)" class="w-7 h-7 flex items-center justify-center text-gray-500 hover:bg-gray-50 active:scale-90 transition-all text-sm font-bold">−</button>
+                  <span class="carrinho-qtd text-xs font-semibold w-6 text-center text-marca-900">2</span>
+                  <button onclick="meu_carrinho_alterarQtd(this, 1)" class="w-7 h-7 flex items-center justify-center text-gray-500 hover:bg-gray-50 active:scale-90 transition-all text-sm font-bold">+</button>
+                </div>
+                <span class="text-sm font-bold text-marca-900">R$ 71,80</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Item 4 -->
+          <div class="carrinho-item card flex gap-3 p-3 group" data-id="4">
+            <button onclick="meu_carrinho_remover(this)" class="absolute top-2 right-2 w-6 h-6 flex items-center justify-center rounded-full bg-red-50 text-red-400 opacity-0 group-hover:opacity-100 transition-opacity duration-200 active:scale-90 z-10" aria-label="Remover item">
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+            </button>
+            <div class="w-16 h-22 rounded-lg bg-gradient-to-br from-sky-100 to-blue-200 flex-shrink-0 flex items-center justify-center cursor-pointer" onclick="mostrarTela('detalhe-do-livro')">
+              <span class="font-display text-xl font-bold text-sky-800">CA</span>
+            </div>
+            <div class="flex-1 min-w-0 pr-6">
+              <h3 class="font-display font-semibold text-sm text-marca-900 truncate leading-snug">Capitães da Areia</h3>
+              <p class="text-xs text-gray-500 truncate">Jorge Amado</p>
+              <div class="flex items-center justify-between mt-2">
+                <div class="flex items-center gap-1.5 border border-gray-200 rounded-lg overflow-hidden">
+                  <button onclick="meu_carrinho_alterarQtd(this, -1)" class="w-7 h-7 flex items-center justify-center text-gray-500 hover:bg-gray-50 active:scale-90 transition-all text-sm font-bold">−</button>
+                  <span class="carrinho-qtd text-xs font-semibold w-6 text-center text-marca-900">1</span>
+                  <button onclick="meu_carrinho_alterarQtd(this, 1)" class="w-7 h-7 flex items-center justify-center text-gray-500 hover:bg-gray-50 active:scale-90 transition-all text-sm font-bold">+</button>
+                </div>
+                <span class="text-sm font-bold text-marca-900">R$ 34,90</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Item 5 -->
+          <div class="carrinho-item card flex gap-3 p-3 group" data-id="5">
+            <button onclick="meu_carrinho_remover(this)" class="absolute top-2 right-2 w-6 h-6 flex items-center justify-center rounded-full bg-red-50 text-red-400 opacity-0 group-hover:opacity-100 transition-opacity duration-200 active:scale-90 z-10" aria-label="Remover item">
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+            </button>
+            <div class="w-16 h-22 rounded-lg bg-gradient-to-br from-violet-100 to-purple-200 flex-shrink-0 flex items-center justify-center cursor-pointer" onclick="mostrarTela('detalhe-do-livro')">
+              <span class="font-display text-xl font-bold text-violet-800">TA</span>
+            </div>
+            <div class="flex-1 min-w-0 pr-6">
+              <h3 class="font-display font-semibold text-sm text-marca-900 truncate leading-snug">Torto Arado</h3>
+              <p class="text-xs text-gray-500 truncate">Itamar Vieira Junior</p>
+              <div class="flex items-center justify-between mt-2">
+                <div class="flex items-center gap-1.5 border border-gray-200 rounded-lg overflow-hidden">
+                  <button onclick="meu_carrinho_alterarQtd(this, -1)" class="w-7 h-7 flex items-center justify-center text-gray-500 hover:bg-gray-50 active:scale-90 transition-all text-sm font-bold">−</button>
+                  <span class="carrinho-qtd text-xs font-semibold w-6 text-center text-marca-900">1</span>
+                  <button onclick="meu_carrinho_alterarQtd(this, 1)" class="w-7 h-7 flex items-center justify-center text-gray-500 hover:bg-gray-50 active:scale-90 transition-all text-sm font-bold">+</button>
+                </div>
+                <span class="text-sm font-bold text-marca-900">R$ 44,90</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Item 6 -->
+          <div class="carrinho-item card flex gap-3 p-3 group" data-id="6">
+            <button onclick="meu_carrinho_remover(this)" class="absolute top-2 right-2 w-6 h-6 flex items-center justify-center rounded-full bg-red-50 text-red-400 opacity-0 group-hover:opacity-100 transition-opacity duration-200 active:scale-90 z-10" aria-label="Remover item">
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+            </button>
+            <div class="w-16 h-22 rounded-lg bg-gradient-to-br from-indigo-100 to-blue-200 flex-shrink-0 flex items-center justify-center cursor-pointer" onclick="mostrarTela('detalhe-do-livro')">
+              <span class="font-display text-xl font-bold text-indigo-800">MP</span>
+            </div>
+            <div class="flex-1 min-w-0 pr-6">
+              <h3 class="font-display font-semibold text-sm text-marca-900 truncate leading-snug">Memórias Póstumas de Brás Cubas</h3>
+              <p class="text-xs text-gray-500 truncate">Machado de Assis</p>
+              <div class="flex items-center justify-between mt-2">
+                <div class="flex items-center gap-1.5 border border-gray-200 rounded-lg overflow-hidden">
+                  <button onclick="meu_carrinho_alterarQtd(this, -1)" class="w-7 h-7 flex items-center justify-center text-gray-500 hover:bg-gray-50 active:scale-90 transition-all text-sm font-bold">−</button>
+                  <span class="carrinho-qtd text-xs font-semibold w-6 text-center text-marca-900">1</span>
+                  <button onclick="meu_carrinho_alterarQtd(this, 1)" class="w-7 h-7 flex items-center justify-center text-gray-500 hover:bg-gray-50 active:scale-90 transition-all text-sm font-bold">+</button>
+                </div>
+                <span class="text-sm font-bold text-marca-900">R$ 27,90</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Cupom de desconto -->
+        <div class="card p-3 mb-4">
+          <div class="flex gap-2">
+            <input id="input-cupom" type="text" placeholder="Cupom de desconto" class="flex-1 text-sm border border-gray-200 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-marca-500 focus:border-transparent transition-all font-body" />
+            <button onclick="meu_carrinho_aplicarCupom()" class="px-4 py-2 bg-marca-900 text-white text-sm font-semibold rounded-lg active:scale-95 transition-all hover:bg-marca-800">Aplicar</button>
+          </div>
+          <div id="cupom-msg" class="hidden mt-2 text-xs font-medium"></div>
+        </div>
+
+        <!-- Resumo financeiro -->
+        <div class="card p-4 mb-4" style="background-color: #F8FAFC;">
+          <h2 class="font-display font-bold text-sm text-marca-900 mb-3 flex items-center gap-2">
+            <svg class="w-4 h-4 text-marca-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg>
+            Resumo do Pedido
+          </h2>
+          <div class="space-y-2 text-sm">
+            <div class="flex justify-between text-gray-600">
+              <span>Subtotal (<span id="resumo-qtd">6</span> itens)</span>
+              <span id="resumo-subtotal" class="font-medium text-marca-900">R$ 209,40</span>
+            </div>
+            <div id="linha-desconto" class="hidden flex justify-between text-emerald-600">
+              <span>Desconto (<span id="cupom-codigo">LIVRO10</span>)</span>
+              <span id="resumo-desconto" class="font-medium">− R$ 20,94</span>
+            </div>
+            <div class="flex justify-between text-gray-600">
+              <span>Frete</span>
+              <span id="resumo-frete" class="font-medium text-marca-900">R$ 12,90</span>
+            </div>
+            <div class="border-t border-gray-200 pt-2 mt-2">
+              <div class="flex justify-between items-baseline">
+                <span class="font-display font-bold text-base text-marca-900">Total</span>
+                <span id="resumo-total" class="font-display font-bold text-xl text-marca-900">R$ 222,30</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Info de entrega -->
+        <div class="card p-3 mb-4 flex items-start gap-3">
+          <div class="w-8 h-8 rounded-lg bg-blue-50 flex items-center justify-center flex-shrink-0 mt-0.5">
+            <svg class="w-4 h-4 text-marca-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          </div>
+          <div>
+            <p class="text-xs text-gray-500 leading-relaxed">Frete calculado para <strong class="text-marca-900">São Paulo, SP</strong>. Alterar endereço na etapa de finalização.</p>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Rodapé fixo com botões -->
+      <div class="fixed bottom-16 left-0 right-0 bg-white border-t border-gray-100 z-40">
+        <div class="max-w-lg mx-auto px-4 py-3 flex items-center gap-3">
+          <button onclick="mostrarTela('catalogo-de-livros')" class="text-sm font-semibold text-marca-500 px-3 py-2.5 rounded-xl active:scale-95 transition-all whitespace-nowrap hover:bg-blue-50">
+            Continuar Comprando
+          </button>
+          <button onclick="meu_carrinho_finalizar()" class="flex-1 bg-marca-500 text-white text-sm font-bold py-3 rounded-xl active:scale-95 transition-all shadow-lg shadow-marca-500/25 hover:bg-marca-600">
+            Finalizar Pedido
+          </button>
+        </div>
+      </div>
+
+      <!-- Animação de remoção -->
+      <style>
+        .carrinho-item.removendo {
+          max-height: 0;
+          opacity: 0;
+          padding-top: 0;
+          padding-bottom: 0;
+          margin-bottom: 0;
+          overflow: hidden;
+          transition: max-height 0.4s ease, opacity 0.3s ease, padding 0.3s ease, margin 0.3s ease;
+        }
+      </style>
+
+      <script>
+        let meu_carrinho_cupomAtivo = null;
+
+        function meu_carrinho_calcularSubtotal() {
+          let total = 0;
+          let qtd = 0;
+          document.querySelectorAll('.carrinho-item').forEach(function(item) {
+            var precoEl = item.querySelector('.text-marca-900:last-child');
+            var qtdEl = item.querySelector('.carrinho-qtd');
+            if (precoEl && qtdEl) {
+              var preco = parseFloat(precoEl.textContent.replace('R$ ', '').replace(',', '.'));
+              var quantidade = parseInt(qtdEl.textContent);
+              total += preco * quantidade;
+              qtd += quantidade;
+            }
+          });
+          return { total: total, qtd: qtd };
+        }
+
+        function meu_carrinho_atualizarResumo() {
+          var dados = meu_carrinho_calcularSubtotal();
+          var frete = dados.qtd > 0 ? 12.90 : 0;
+          var desconto = 0;
+
+          document.getElementById('resumo-subtotal').textContent = 'R$ ' + dados.total.toFixed(2).replace('.', ',');
+          document.getElementById('resumo-qtd').textContent = dados.qtd;
+          document.getElementById('resumo-frete').textContent = dados.qtd > 0 ? 'R$ ' + frete.toFixed(2).replace('.', ',') : 'R$ 0,00';
+
+          if (meu_carrinho_cupomAtivo && dados.total > 0) {
+            desconto = dados.total * 0.1;
+            document.getElementById('linha-desconto').classList.remove('hidden');
+            document.getElementById('resumo-desconto').textContent = '− R$ ' + desconto.toFixed(2).replace('.', ',');
+          } else {
+            document.getElementById('linha-desconto').classList.add('hidden');
+          }
+
+          var total = dados.total - desconto + frete;
+          document.getElementById('resumo-total').textContent = 'R$ ' + total.toFixed(2).replace('.', ',');
+          document.getElementById('carrinho-contador-header').textContent = dados.qtd;
+        }
+
+        function meu_carrinho_alterarQtd(btn, delta) {
+          var qtdEl = btn.parentElement.querySelector('.carrinho-qtd');
+          var qtdAtual = parseInt(qtdEl.textContent);
+          var novaQtd = qtdAtual + delta;
+          if (novaQtd < 1) {
+            var item = btn.closest('.carrinho-item');
+            meu_carrinho_remover(item.querySelector('[aria-label]'));
+            return;
+          }
+          if (novaQtd > 10) {
+            toast('Quantidade máxima: 10 unidades por item', 'info');
+            return;
+          }
+          qtdEl.textContent = novaQtd;
+          btn.closest('.card').style.transform = 'scale(0.98)';
+          setTimeout(function() {
+            btn.closest('.card').style.transform = 'scale(1)';
+          }, 100);
+          meu_carrinho_atualizarResumo();
+        }
+
+        function meu_carrinho_remover(btn) {
+          var item = btn.closest('.carrinho-item');
+          if (!item) return;
+          var nome = item.querySelector('h3').textContent;
+          item.classList.add('removendo');
+          setTimeout(function() {
+            item.remove();
+            meu_carrinho_atualizarResumo();
+            toast('"' + nome + '" removido do carrinho', 'info');
+            var lista = document.getElementById('carrinho-lista');
+            if (lista.querySelectorAll('.carrinho-item').length === 0) {
+              lista.innerHTML = meu_carrinho_htmlVazio();
+            }
+          }, 400);
+        }
+
+        function meu_carrinho_aplicarCupom() {
+          var input = document.getElementById('input-cupom');
+          var msg = document.getElementById('cupom-msg');
+          var codigo = input.value.trim().toUpperCase();
+
+          if (!codigo) {
+            msg.className = 'mt-2 text-xs font-medium text-red-500';
+            msg.textContent = 'Digite um código de cupom.';
+            msg.classList.remove('hidden');
+            return;
+          }
+
+          if (codigo === 'LIVRO10' && !meu_carrinho_cupomAtivo) {
+            meu_carrinho_cupomAtivo = codigo;
+            msg.className = 'mt-2 text-xs font-medium text-emerald-600 flex items-center gap-1';
+            msg.innerHTML = '<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg> Cupom LIVRO10 aplicado! 10% de desconto.';
+            msg.classList.remove('hidden');
+            input.disabled = true;
+            input.classList.add('bg-gray-50');
+            meu_carrinho_atualizarResumo();
+            toast('Cupom aplicado com sucesso!', 'ok');
+          } else if (meu_carrinho_cupomAtivo) {
+            msg.className = 'mt-2 text-xs font-medium text-gray-500';
+            msg.textContent = 'Cupom "' + meu_carrinho_cupomAtivo + '" já está ativo.';
+            msg.classList.remove('hidden');
+          } else {
+            msg.className = 'mt-2 text-xs font-medium text-red-500';
+            msg.textContent = 'Cupom inválido. Tente "LIVRO10".';
+            msg.classList.remove('hidden');
+          }
+        }
+
+        function meu_carrinho_finalizar() {
+          var dados = meu_carrinho_calcularSubtotal();
+          if (dados.qtd === 0) {
+            toast('Seu carrinho está vazio!', 'erro');
+            return;
+          }
+          var desconto = 0;
+          if (meu_carrinho_cupomAtivo) {
+            desconto = dados.total * 0.1;
+          }
+          var frete = 12.90;
+          var total = dados.total - desconto + frete;
+          var html = '<div class="p-4 text-center">' +
+            '<div class="w-16 h-16 mx-auto rounded-full bg-green-50 flex items-center justify-center mb-3">' +
+            '<svg class="w-8 h-8 text-green-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>' +
+            '</div>' +
+            '<h3 class="font-display font-bold text-lg text-marca-900">Confirmar Pedido?</h3>' +
+            '<p class="text-sm text-gray-500 mt-1">' + dados.qtd + ' ítem(ns) &middot; Total: <strong>R$ ' + total.toFixed(2).replace('.', ',') + '</strong></p>' +
+            '<div class="flex gap-2 mt-4">' +
+            '<button onclick="fecharModal(); mostrarTela(\'finalizar-pedido\')" class="flex-1 btn bg-marca-500 text-white py-2.5 rounded-xl text-sm font-bold active:scale-95 transition-all">Confirmar</button>' +
+            '<button onclick="fecharModal()" class="flex-1 btn bg-gray-100 text-gray-700 py-2.5 rounded-xl text-sm font-bold active:scale-95 transition-all">Cancelar</button>' +
+            '</div></div>';
+          abrirModal(html, 'Finalizar Pedido');
+        }
+
+        function meu_carrinho_htmlVazio() {
+          return '<div class="text-center py-12">' +
+            '<div class="w-20 h-20 mx-auto rounded-full bg-gray-50 flex items-center justify-center mb-4">' +
+            '<svg class="w-10 h-10 text-gray-300" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007zM8.625 10.5a.375.375 0 11-.75 0 .375.375 0 01.75 0zm7.5 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z"/></svg>' +
+            '</div>' +
+            '<h3 class="font-display font-bold text-base text-marca-900">Carrinho vazio</h3>' +
+            '<p class="text-sm text-gray-400 mt-1">Explore nosso catálogo e encontre livros incríveis!</p>' +
+            '<button onclick="mostrarTela(\'catalogo-de-livros\')" class="mt-4 text-sm font-semibold text-marca-500 underline underline-offset-2">Ver catálogo</button>' +
+            '</div>';
+        }
+
+        meu_carrinho_atualizarResumo();
+      </script>
+    </section>
+
     <!-- TELAS -->
 
     </div>
