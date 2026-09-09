@@ -3402,6 +3402,616 @@ function painel_administrativo_abrirConfiguracoes() {
 painel_administrativo_renderizarPedidos(painel_administrativo_pedidos);
 </script>
 
+    <section data-tela="gerenciar-conteudo" class="hidden">
+      <!-- Indicadores -->
+      <div class="grid grid-cols-3 gap-3 mb-5">
+        <div class="bg-white rounded-2xl p-3 shadow-sm border border-gray-100 text-center">
+          <p class="text-2xl font-bold font-display text-marca-700" id="count-noticias">6</p>
+          <p class="text-xs text-gray-500 mt-0.5">Notícias</p>
+        </div>
+        <div class="bg-white rounded-2xl p-3 shadow-sm border border-gray-100 text-center">
+          <p class="text-2xl font-bold font-display text-marca-700" id="count-palavras">6</p>
+          <p class="text-xs text-gray-500 mt-0.5">Palavras</p>
+        </div>
+        <div class="bg-white rounded-2xl p-3 shadow-sm border border-gray-100 text-center">
+          <p class="text-2xl font-bold font-display text-marca-700" id="count-livros">6</p>
+          <p class="text-xs text-gray-500 mt-0.5">Livros</p>
+        </div>
+      </div>
+
+      <!-- Abas -->
+      <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden mb-5">
+        <div class="flex border-b border-gray-100">
+          <button onclick="gerenciar_conteudo_abrirAba('noticias')" id="aba-noticias" class="flex-1 py-3 text-sm font-semibold text-center transition-all duration-200 border-b-2 border-marca-600 text-marca-700 bg-marca-50/50">Notícias</button>
+          <button onclick="gerenciar_conteudo_abrirAba('palavras')" id="aba-palavras" class="flex-1 py-3 text-sm font-semibold text-center transition-all duration-200 border-b-2 border-transparent text-gray-400">Palavra do Dia</button>
+          <button onclick="gerenciar_conteudo_abrirAba('livros')" id="aba-livros" class="flex-1 py-3 text-sm font-semibold text-center transition-all duration-200 border-b-2 border-transparent text-gray-400">Livros</button>
+        </div>
+
+        <!-- Busca e filtro -->
+        <div class="p-3 space-y-2">
+          <div class="relative">
+            <svg class="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+            <input type="text" id="search-input" placeholder="Buscar..." oninput="gerenciar_conteudo_buscar(this.value)" class="w-full pl-9 pr-4 py-2.5 bg-gray-50 border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-marca-500/30 focus:border-marca-500 transition-all font-body">
+          </div>
+          <div class="flex gap-2" id="filter-container">
+            <button onclick="gerenciar_conteudo_filtrar('todos')" class="filter-btn active-filter px-3 py-1.5 rounded-lg text-xs font-semibold transition-all" data-filter="todos">Todos</button>
+            <button onclick="gerenciar_conteudo_filtrar('publicado')" class="filter-btn px-3 py-1.5 rounded-lg text-xs font-semibold transition-all" data-filter="publicado">Publicados</button>
+            <button onclick="gerenciar_conteudo_filtrar('rascunho')" class="filter-btn px-3 py-1.5 rounded-lg text-xs font-semibold transition-all" data-filter="rascunho">Rascunhos</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Lista de itens -->
+      <div id="lista-itens" class="space-y-3 pb-20"></div>
+
+      <!-- Estado vazio -->
+      <div id="estado-vazio" class="hidden text-center py-10">
+        <svg class="w-16 h-16 mx-auto text-gray-200 mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+        <p class="text-sm text-gray-400 font-body">Nenhum item encontrado</p>
+      </div>
+
+      <!-- Botão flutuante Novo -->
+      <button onclick="gerenciar_conteudo_abrirFormulario()" class="fixed bottom-6 right-4 z-40 w-14 h-14 bg-marca-600 hover:bg-marca-700 active:scale-90 text-white rounded-full shadow-lg shadow-marca-600/30 flex items-center justify-center transition-all duration-200">
+        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 4v16m8-8H4"/></svg>
+      </button>
+
+      <!-- Modal do formulário -->
+      <div id="modal-formulario" class="fixed inset-0 z-50 hidden">
+        <div class="absolute inset-0 bg-black/50 backdrop-blur-sm" onclick="gerenciar_conteudo_fecharFormulario()"></div>
+        <div class="absolute inset-x-0 bottom-0 bg-gray-50 rounded-t-3xl max-h-[90vh] overflow-y-auto animate-slideUp">
+          <div class="sticky top-0 bg-gray-50 z-10 px-5 pt-4 pb-3 border-b border-gray-200">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-3">
+                <button onclick="gerenciar_conteudo_fecharFormulario()" class="p-2 hover:bg-gray-200 rounded-full transition-colors">
+                  <svg class="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+                </button>
+                <div>
+                  <h3 id="form-titulo" class="font-display font-bold text-lg text-marca-800">Novo Item</h3>
+                  <p id="form-subtitulo" class="text-xs text-gray-500">Preencha os campos abaixo</p>
+                </div>
+              </div>
+              <div class="flex gap-2">
+                <button onclick="gerenciar_conteudo_cancelar()" class="px-4 py-2 text-sm text-gray-600 hover:text-gray-800 font-medium transition-colors">Cancelar</button>
+                <button onclick="gerenciar_conteudo_salvar()" class="px-5 py-2 bg-marca-600 hover:bg-marca-700 active:scale-95 text-white text-sm font-semibold rounded-xl shadow-md shadow-marca-600/20 transition-all">Salvar</button>
+              </div>
+            </div>
+          </div>
+          <div id="form-corpo" class="p-5 space-y-5"></div>
+        </div>
+      </div>
+
+      <!-- Modal de confirmação de exclusão -->
+      <div id="modal-excluir" class="fixed inset-0 z-50 hidden">
+        <div class="absolute inset-0 bg-black/50 backdrop-blur-sm flex items-end sm:items-center justify-center">
+          <div class="bg-white rounded-t-3xl sm:rounded-3xl w-full max-w-sm p-6 mx-4 animate-slideUp">
+            <div class="w-14 h-14 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
+              <svg class="w-7 h-7 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>
+            </div>
+            <h3 class="font-display font-bold text-lg text-center text-gray-800 mb-1">Excluir item</h3>
+            <p class="text-sm text-gray-500 text-center mb-6" id="excluir-mensagem">Tem certeza que deseja excluir este item? Esta ação não pode ser desfeita.</p>
+            <div class="flex gap-3">
+              <button onclick="gerenciar_conteudo_fecharExcluir()" class="flex-1 py-3 border border-gray-200 text-gray-700 rounded-xl font-semibold text-sm hover:bg-gray-50 transition-colors">Cancelar</button>
+              <button onclick="gerenciar_conteudo_confirmarExcluir()" class="flex-1 py-3 bg-red-500 hover:bg-red-600 active:scale-95 text-white rounded-xl font-semibold text-sm transition-all shadow-md shadow-red-500/20">Excluir</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <script>
+      (function() {
+        var dados = {
+          noticias: [
+            { id: 'n1', titulo: 'Festival Literário de Paraty reúne 50 mil visitantes na edição de 2025', corpo: 'Considerado um dos maiores eventos literários da América Latina, o 22º Festival Literário Internacional de Paraty (FLIP) atraiu mais de 50 mil visitantes à cidade histórica. Escritores de 18 países participaram de debates, lançamentos e oficinas ao longo de dez dias. A edição deste ano teve como tema central "A voz das periferias na literatura brasileira".', categoria: 'Cultura', data: '2025-07-14', publicado: true, imagem: '' },
+            { id: 'n2', titulo: 'IBGE registra aumento de 12% na venda de livros físicos no primeiro semestre', corpo: 'Segundo dados da Pesquisa Mensal de Comércio do IBGE, as vendas de livros físicos cresceram 12% no primeiro semestre de 2025 em comparação com o mesmo período de 2024. O crescimento foi puxado pelo aumento da procura por literatura infanto-juvenil e obras de não-ficção.', categoria: 'Economia', data: '2025-07-10', publicado: true, imagem: '' },
+            { id: 'n3', titulo: 'Nova lei de incentivo à leitura é sancionada pela Presidência', corpo: 'A Lei nº 14.892/2025, sancionada na última semana, garante benefícios fiscais para editoras que investirem em distribuição de livros em escolas públicas e bibliotecas comunitárias. A expectativa é que a medida impulsione o mercado editorial brasileiro.', categoria: 'Política', data: '2025-07-08', publicado: true, imagem: '' },
+            { id: 'n4', titulo: 'Escritor brasileiro é finalista do Prêmio Man Booker International', corpo: 'João Ricardo, autor de "Os rios subterrâneos", está entre os seis finalistas do prestigiado Prêmio Man Booker International de 2025. É a primeira vez que um autor brasileiro chega à etapa final do prêmio.', categoria: 'Literatura', data: '2025-07-05', publicado: true, imagem: '' },
+            { id: 'n5', titulo: 'Feira do Livro de Lisboa recebe edição especial Brasil', corpo: 'A Feira do Livro de Lisboa terá uma edição especial dedicada ao Brasil em setembro. A programação inclui lançamentos, debates e performances de autores brasileiros contemporâneos.', categoria: 'Cultura', data: '2025-07-02', publicado: false, imagem: '' },
+            { id: 'n6', titulo: 'Pesquisa revela que 78% dos jovens leem pelo menos um livro por mês', corpo: 'Uma pesquisa inédita do Datafolha, encomendada pela Câmara Brasileira do Livro, mostra que o hábito de leitura entre jovens de 16 a 25 anos cresceu significativamente nos últimos dois anos.', categoria: 'Educação', data: '2025-06-28', publicado: true, imagem: '' }
+          ],
+          palavras: [
+            { id: 'p1', titulo: 'Meraki', corpo: 'Meraki (do grego μεράκι) significa fazer algo com alma, criatividade e amor — colocar um pedaço de si mesmo em tudo o que se faz, seja um poema, um livro ou uma simples xícara de café.', reflexao: 'Quando escrevemos com meraki, cada palavra carrega intenção. E é essa intenção que transforma texto em conexão.', data: '2025-07-14', publicado: true },
+            { id: 'p2', titulo: 'Saudade', corpo: 'Saudade é a presença da ausência — um sentimento que habita o peito como um hóspede silencioso, lembrando-nos que o que amamos nunca realmente se vai.', reflexao: 'Talvez a saudade seja o preço que pagamos por amar profundamente. E que preço bonito.', data: '2025-07-13', publicado: true },
+            { id: 'p3', titulo: 'Resiliência', corpo: 'Resiliência vem da física: é a propriedade de um material de voltar à sua forma original após sofrer pressão. Nas pessoas, é a arte de se reerguer depois de cair.', reflexao: 'Cada queda constrói um solo mais firme para o próximo passo.', data: '2025-07-12', publicado: true },
+            { id: 'p4', titulo: 'Epifania', corpo: 'Epifania é o momento súbito em que uma revelação desce como luz — a compreensão que chega sem aviso e muda tudo.', reflexao: 'As melhores ideias nascem no silêncio entre uma respiração e outra.', data: '2025-07-11', publicado: true },
+            { id: 'p5', titulo: 'Nostalgia', corpo: 'Nostalgia é o tempo voltando em forma de saudade — o cheiro de infância, o som de uma música, o gosto de um momento que já passou.', reflexao: 'A nostalgia nos lembra que cada dia é uma página que nunca mais será escrita igual.', data: '2025-07-10', publicado: false },
+            { id: 'p6', titulo: 'Serendipidade', corpo: 'Serendipidade é o acaso feliz — encontrar exatamente o que não sabia que procurava, justo quando parou de procurar.', reflexao: 'A vida tem seus próprios roteiros. A serendipidade é a sua assinatura.', data: '2025-07-09', publicado: true }
+          ],
+          livros: [
+            { id: 'l1', titulo: 'O Último Poema de Ana', autor: 'Mariana Alves', descricao: 'Um romance comovente sobre uma poetisa que, aos 82 anos, decide escrever seu último poema antes de partir. Cada verso é uma memória, cada página uma despedida.', paginas: 312, preco: 49.90, categoria: 'Romance', formato: 'ambos', publicado: true, imagem: '' },
+            { id: 'l2', titulo: 'Crônicas de um Café', autor: 'Pedro Henrique Silva', descricao: 'Histórias curtas e reflexivas reunidas em um livro que celebra os momentos simples da vida — encontros em cafeterias, conversas com estranhos, o silêncio compartilhado.', paginas: 180, preco: 34.90, categoria: 'Crônicas', formato: 'fisico', publicado: true, imagem: '' },
+            { id: 'l3', titulo: 'A Linguagem das Estrelas', autor: 'Carolina Mendes', descricao: 'Um guia poético sobre astronomia, combinando ciência e sensibilidade para explicar os fenômenos celestes através de metáforas que tocam o coração.', paginas: 256, preco: 42.00, categoria: 'Ciência', formato: 'ebook', publicado: true, imagem: '' },
+            { id: 'l4', titulo: 'Diário de um Escritor Invisível', autor: 'Rafael Torres', descricao: 'Rafael narra seu percurso de dez anos escrevendo no anonimato antes de ser descoberto. Uma história honesta sobre persistência, fracasso e o triunfo da paixão.', paginas: 278, preco: 46.90, categoria: 'Biografia', formato: 'ambos', publicado: true, imagem: '' },
+            { id: 'l5', titulo: 'Contos da Lua Nova', autor: 'Fernanda Oliveira', descricao: 'Coleção de doze contos que exploram os mistérios e magias das noites de lua nova, reunindo elementos de folclore brasileiro e fantasia contemporânea.', paginas: 224, preco: 39.90, categoria: 'Fantasia', formato: 'fisico', publicado: false, imagem: '' },
+            { id: 'l6', titulo: 'Manual de Poesia para Iniciantes', autor: 'Lucas Andrade', descricao: 'Um guia prático e acessível para quem quer começar a escrever poesia. Do haicai ao soneto, do verso livre ao slam — tudo explicado com exemplos e exercícios.', paginas: 160, preco: 29.90, categoria: 'Didático', formato: 'ebook', publicado: true, imagem: '' }
+          ]
+        };
+
+        var abaAtiva = 'noticias';
+        var filtroAtivo = 'todos';
+        var termoBusca = '';
+        var editandoId = null;
+        var excluirId = null;
+
+        function gerenciar_conteudo_abrirAba(aba) {
+          abaAtiva = aba;
+          ['noticias', 'palavras', 'livros'].forEach(function(a) {
+            var btn = document.getElementById('aba-' + a);
+            if (a === aba) {
+              btn.classList.add('border-marca-600', 'text-marca-700', 'bg-marca-50/50');
+              btn.classList.remove('border-transparent', 'text-gray-400');
+            } else {
+              btn.classList.remove('border-marca-600', 'text-marca-700', 'bg-marca-50/50');
+              btn.classList.add('border-transparent', 'text-gray-400');
+            }
+          });
+          editandoId = null;
+          gerenciar_conteudo_renderizar();
+        }
+
+        function gerenciar_conteudo_filtrar(filtro) {
+          filtroAtivo = filtro;
+          document.querySelectorAll('.filter-btn').forEach(function(btn) {
+            if (btn.dataset.filter === filtro) {
+              btn.classList.add('bg-marca-600', 'text-white');
+              btn.classList.remove('bg-gray-100', 'text-gray-600', 'hover:bg-gray-200');
+            } else {
+              btn.classList.remove('bg-marca-600', 'text-white');
+              btn.classList.add('bg-gray-100', 'text-gray-600', 'hover:bg-gray-200');
+            }
+          });
+          gerenciar_conteudo_renderizar();
+        }
+
+        function gerenciar_conteudo_buscar(valor) {
+          termoBusca = valor.toLowerCase().trim();
+          gerenciar_conteudo_renderizar();
+        }
+
+        function gerenciar_conteudo_obterItens() {
+          var lista = dados[abaAtiva] || [];
+          return lista.filter(function(item) {
+            var matchBusca = !termoBusca || item.titulo.toLowerCase().includes(termoBusca);
+            var matchFiltro = filtroAtivo === 'todos' || (filtroAtivo === 'publicado' ? item.publicado : !item.publicado);
+            return matchBusca && matchFiltro;
+          });
+        }
+
+        function gerenciar_conteudo_renderizar() {
+          var itens = gerenciar_conteudo_obterItens();
+          var container = document.getElementById('lista-itens');
+          var estadoVazio = document.getElementById('estado-vazio');
+
+          gerenciar_conteudo_atualizarContadores();
+
+          if (itens.length === 0) {
+            container.innerHTML = '';
+            estadoVazio.classList.remove('hidden');
+            return;
+          }
+          estadoVazio.classList.add('hidden');
+
+          var html = '';
+          itens.forEach(function(item) {
+            if (abaAtiva === 'noticias') {
+              html += gerenciar_conteudo_criarCardNoticia(item);
+            } else if (abaAtiva === 'palavras') {
+              html += gerenciar_conteudo_criarCardPalavra(item);
+            } else {
+              html += gerenciar_conteudo_criarCardLivro(item);
+            }
+          });
+          container.innerHTML = html;
+        }
+
+        function gerenciar_conteudo_criarCardNoticia(item) {
+          var dataFormatada = dataBR(item.data);
+          var corCategoria = gerenciar_conteudo_corCategoria(item.categoria);
+          var iniciais = item.titulo.substring(0, 2).toUpperCase();
+          return '<div class="card bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">' +
+            '<div class="flex">' +
+              '<div class="w-24 h-24 flex-shrink-0 bg-gradient-to-br from-marca-100 to-marca-200 flex items-center justify-center">' +
+                '<div class="w-14 h-14 rounded-full bg-marca-600/10 flex items-center justify-center text-marca-700 font-bold text-lg">' + iniciais + '</div>' +
+              '</div>' +
+              '<div class="flex-1 p-3.5 min-w-0">' +
+                '<div class="flex items-start justify-between gap-2">' +
+                  '<h4 class="font-display font-semibold text-sm text-marca-800 leading-snug line-clamp-2">' + item.titulo + '</h4>' +
+                  '<button onclick="gerenciar_conteudo_togglePublicado(\'' + item.id + '\')" class="flex-shrink-0 mt-0.5">' +
+                    (item.publicado ? '<span class="badge badge-verde">Publicado</span>' : '<span class="badge badge-cinza">Rascunho</span>') +
+                  '</button>' +
+                '</div>' +
+                '<div class="flex items-center gap-2 mt-2">' +
+                  '<span class="text-xs px-2 py-0.5 rounded-md font-medium ' + corCategoria + '">' + item.categoria + '</span>' +
+                  '<span class="text-xs text-gray-400">' + dataFormatada + '</span>' +
+                '</div>' +
+                '<div class="flex items-center gap-1 mt-3">' +
+                  '<button onclick="gerenciar_conteudo_editar(\'' + item.id + '\')" class="p-2 hover:bg-marca-50 rounded-xl transition-colors" title="Editar">' +
+                    '<svg class="w-4 h-4 text-marca-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"/></svg>' +
+                  '</button>' +
+                  '<button onclick="gerenciar_conteudo_solicitarExclusao(\'' + item.id + '\')" class="p-2 hover:bg-red-50 rounded-xl transition-colors" title="Excluir">' +
+                    '<svg class="w-4 h-4 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>' +
+                  '</button>' +
+                '</div>' +
+              '</div>' +
+            '</div>' +
+          '</div>';
+        }
+
+        function gerenciar_conteudo_criarCardPalavra(item) {
+          var dataFormatada = dataBR(item.data);
+          return '<div class="card bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">' +
+            '<div class="p-4">' +
+              '<div class="flex items-start justify-between">' +
+                '<div class="flex items-center gap-3">' +
+                  '<div class="w-12 h-12 rounded-xl bg-gradient-to-br from-amber-100 to-orange-200 flex items-center justify-center flex-shrink-0">' +
+                    '<span class="text-lg">💡</span>' +
+                  '</div>' +
+                  '<div>' +
+                    '<h4 class="font-display font-bold text-base text-marca-800">' + item.titulo + '</h4>' +
+                    '<span class="text-xs text-gray-400">' + dataFormatada + '</span>' +
+                  '</div>' +
+                '</div>' +
+                (item.publicado ? '<span class="badge badge-verde">Publicado</span>' : '<span class="badge badge-cinza">Rascunho</span>') +
+              '</div>' +
+              '<p class="text-sm text-gray-600 mt-3 leading-relaxed line-clamp-2">' + item.corpo + '</p>' +
+              '<div class="flex items-center gap-1 mt-4 pt-3 border-t border-gray-50">' +
+                '<button onclick="gerenciar_conteudo_editar(\'' + item.id + '\')" class="flex-1 py-2 flex items-center justify-center gap-1.5 hover:bg-marca-50 rounded-xl transition-colors">' +
+                  '<svg class="w-4 h-4 text-marca-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"/></svg>' +
+                  '<span class="text-xs font-medium text-marca-600">Editar</span>' +
+                '</button>' +
+                '<button onclick="gerenciar_conteudo_togglePublicado(\'' + item.id + '\')" class="px-3 py-2 flex items-center justify-center gap-1.5 hover:bg-gray-50 rounded-xl transition-colors">' +
+                  '<svg class="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 111.024 5.435l-7.152 3.572"/></svg>' +
+                  '<span class="text-xs font-medium text-gray-500">' + (item.publicado ? 'Despublicar' : 'Publicar') + '</span>' +
+                '</button>' +
+                '<button onclick="gerenciar_conteudo_solicitarExclusao(\'' + item.id + '\')" class="p-2 hover:bg-red-50 rounded-xl transition-colors" title="Excluir">' +
+                  '<svg class="w-4 h-4 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>' +
+                '</button>' +
+              '</div>' +
+            '</div>' +
+          '</div>';
+        }
+
+        function gerenciar_conteudo_criarCardLivro(item) {
+          var precoFormatado = brl(item.preco);
+          var corCategoria = gerenciar_conteudo_corCategoria(item.categoria);
+          var iniciais = item.titulo.substring(0, 2).toUpperCase();
+          var formatoIcone = item.formato === 'ebook' ? '📱 E-book' : item.formato === 'fisico' ? '📕 Físico' : '📱📕 Ambos';
+          return '<div class="card bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">' +
+            '<div class="flex">' +
+              '<div class="w-20 h-28 flex-shrink-0 bg-gradient-to-br from-marca-100 via-marca-200 to-marca-300 flex items-center justify-center shadow-inner">' +
+                '<div class="w-14 h-20 bg-white/80 rounded-md shadow-sm flex items-center justify-center">' +
+                  '<span class="text-[10px] font-display font-bold text-marca-700 text-center leading-tight px-1">' + item.titulo + '</span>' +
+                '</div>' +
+              '</div>' +
+              '<div class="flex-1 p-3.5 min-w-0">' +
+                '<div class="flex items-start justify-between gap-2">' +
+                  '<h4 class="font-display font-semibold text-sm text-marca-800 leading-snug">' + item.titulo + '</h4>' +
+                  (item.publicado ? '<span class="badge badge-verde flex-shrink-0">Publicado</span>' : '<span class="badge badge-cinza flex-shrink-0">Rascunho</span>') +
+                '</div>' +
+                '<p class="text-xs text-gray-500 mt-1">' + item.autor + ' · ' + item.paginas + ' pág.</p>' +
+                '<div class="flex items-center gap-2 mt-1.5">' +
+                  '<span class="text-xs px-2 py-0.5 rounded-md font-medium ' + corCategoria + '">' + item.categoria + '</span>' +
+                  '<span class="text-[10px] text-gray-400">' + formatoIcone + '</span>' +
+                '</div>' +
+                '<p class="font-display font-bold text-base text-green-600 mt-2">' + precoFormatado + '</p>' +
+                '<div class="flex items-center gap-1 mt-2">' +
+                  '<button onclick="gerenciar_conteudo_editar(\'' + item.id + '\')" class="p-2 hover:bg-marca-50 rounded-xl transition-colors" title="Editar">' +
+                    '<svg class="w-4 h-4 text-marca-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"/></svg>' +
+                  '</button>' +
+                  '<button onclick="gerenciar_conteudo_solicitarExclusao(\'' + item.id + '\')" class="p-2 hover:bg-red-50 rounded-xl transition-colors" title="Excluir">' +
+                    '<svg class="w-4 h-4 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>' +
+                  '</button>' +
+                '</div>' +
+              '</div>' +
+            '</div>' +
+          '</div>';
+        }
+
+        function gerenciar_conteudo_corCategoria(cat) {
+          var map = {
+            'Cultura': 'bg-amber-100 text-amber-700',
+            'Economia': 'bg-green-100 text-green-700',
+            'Política': 'bg-red-100 text-red-700',
+            'Literatura': 'bg-purple-100 text-purple-700',
+            'Educação': 'bg-blue-100 text-blue-700',
+            'Romance': 'bg-pink-100 text-pink-700',
+            'Crônicas': 'bg-teal-100 text-teal-700',
+            'Ciência': 'bg-cyan-100 text-cyan-700',
+            'Biografia': 'bg-indigo-100 text-indigo-700',
+            'Fantasia': 'bg-violet-100 text-violet-700',
+            'Didático': 'bg-emerald-100 text-emerald-700'
+          };
+          return map[cat] || 'bg-gray-100 text-gray-600';
+        }
+
+        function gerenciar_conteudo_categoriasSelect() {
+          if (abaAtiva === 'noticias') {
+            return '<option value="">Selecione...</option>' +
+              '<option>Cultura</option><option>Economia</option><option>Política</option>' +
+              '<option>Literatura</option><option>Educação</option><option>Tecnologia</option><option>Esportes</option>';
+          } else if (abaAtiva === 'livros') {
+            return '<option value="">Selecione...</option>' +
+              '<option>Romance</option><option>Crônicas</option><option>Ciência</option>' +
+              '<option>Biografia</option><option>Fantasia</option><option>Didático</option><option>Poesia</option><option>História</option>';
+          }
+          return '';
+        }
+
+        function gerenciar_conteudo_atualizarContadores() {
+          document.getElementById('count-noticias').textContent = dados.noticias.length;
+          document.getElementById('count-palavras').textContent = dados.palavras.length;
+          document.getElementById('count-livros').textContent = dados.livros.length;
+        }
+
+        function gerenciar_conteudo_editar(id) {
+          editandoId = id;
+          gerenciar_conteudo_abrirFormulario(id);
+        }
+
+        function gerenciar_conteudo_abrirFormulario(id) {
+          var modal = document.getElementById('modal-formulario');
+          var titulo = document.getElementById('form-titulo');
+          var subtitulo = document.getElementById('form-subtitulo');
+          var corpo = document.getElementById('form-corpo');
+          var item = null;
+
+          if (id) {
+            item = dados[abaAtiva].find(function(it) { return it.id === id; });
+            titulo.textContent = 'Editar Item';
+            subtitulo.textContent = 'Altere os campos e salve as mudanças';
+          } else {
+            titulo.textContent = abaAtiva === 'noticias' ? 'Nova Notícia' : abaAtiva === 'palavras' ? 'Nova Palavra do Dia' : 'Novo Livro';
+            subtitulo.textContent = 'Preencha os dados do item';
+            item = abaAtiva === 'noticias' ? { titulo: '', corpo: '', categoria: '', data: dataBR(new Date().toISOString()), publicado: false, imagem: '' } :
+              abaAtiva === 'palavras' ? { titulo: '', corpo: '', reflexao: '', data: dataBR(new Date().toISOString()), publicado: false } :
+              { titulo: '', autor: '', descricao: '', paginas: 0, preco: 0, categoria: '', formato: 'ambos', publicado: false, imagem: '' };
+          }
+
+          var catSelected = item.categoria || '';
+          var html = '';
+
+          if (abaAtiva === 'noticias') {
+            html += gerenciar_conteudo_campoTexto('Título', 'titulo', item.titulo, 'Digite o título da notícia');
+            html += '<div><label class="block text-xs font-semibold text-gray-600 mb-1.5">Corpo da notícia</label><textarea id="f-corpo" rows="5" placeholder="Escreva o conteúdo completo da notícia..." class="w-full px-4 py-3 bg-white border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-marca-500/30 focus:border-marca-500 transition-all font-body resize-none">' + (item.corpo || '') + '</textarea></div>';
+            html += '<div><label class="block text-xs font-semibold text-gray-600 mb-1.5">Imagem de destaque</label><div class="relative">' +
+              '<input type="file" accept="image/*" onchange="gerenciar_conteudo_previewImagem(this)" class="hidden" id="f-imagem-input">' +
+              '<button onclick="document.getElementById(\'f-imagem-input\').click()" class="w-full py-4 border-2 border-dashed border-gray-200 rounded-xl hover:border-marca-400 hover:bg-marca-50/50 transition-all flex flex-col items-center gap-2">' +
+                '<svg class="w-8 h-8 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>' +
+                '<span class="text-xs text-gray-400 font-medium">Toque para adicionar imagem</span>' +
+              '</button>' +
+              '<div id="f-imagem-preview" class="hidden mt-3 relative">' +
+                '<div id="f-imagem-preview-content" class="w-full h-40 bg-gradient-to-br from-marca-100 to-marca-200 rounded-xl flex items-center justify-center">' +
+                  '<span class="text-2xl">📰</span>' +
+                '</div>' +
+                '<button onclick="gerenciar_conteudo_removerImagem()" class="absolute top-2 right-2 w-7 h-7 bg-black/50 hover:bg-black/70 text-white rounded-full flex items-center justify-center transition-colors">' +
+                  '<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>' +
+                '</button>' +
+              '</div>' +
+            '</div></div>';
+            html += '<div class="grid grid-cols-2 gap-3">';
+            html += gerenciar_conteudo_campoSelect('Categoria', 'categoria', catSelected, gerenciar_conteudo_categoriasSelect());
+            html += gerenciar_conteudo_campoData('Data', 'data', item.data);
+            html += '</div>';
+            html += '<div class="flex items-center justify-between p-3 bg-gray-50 rounded-xl">' +
+              '<span class="text-sm text-gray-600">Status</span>' +
+              '<button onclick="gerenciar_conteudo_toggleStatusForm()" id="f-status-toggle" class="relative w-12 h-7 bg-marca-600 rounded-full transition-colors duration-200">' +
+                '<span id="f-status-circle" class="absolute top-0.5 left-6 w-6 h-6 bg-white rounded-full shadow transition-all duration-200"></span>' +
+              '</button>' +
+            '</div>';
+            html += '<p class="text-center text-xs text-gray-400 mt-1" id="f-status-texto">' + (item.publicado ? 'Publicado' : 'Rascunho') + '</p>';
+          } else if (abaAtiva === 'palavras') {
+            html += gerenciar_conteudo_campoTexto('Palavra', 'titulo', item.titulo, 'Digite a palavra do dia');
+            html += '<div><label class="block text-xs font-semibold text-gray-600 mb-1.5">Significado</label><textarea id="f-corpo" rows="3" placeholder="Escreva o significado da palavra..." class="w-full px-4 py-3 bg-white border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-marca-500/30 focus:border-marca-500 transition-all font-body resize-none">' + (item.corpo || '') + '</textarea></div>';
+            html += '<div><label class="block text-xs font-semibold text-gray-600 mb-1.5">Reflexão</label><textarea id="f-reflexao" rows="2" placeholder="Escreva uma reflexão sobre a palavra..." class="w-full px-4 py-3 bg-white border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-marca-500/30 focus:border-marca-500 transition-all font-body resize-none">' + (item.reflexao || '') + '</textarea></div>';
+            html += '<div><label class="block text-xs font-semibold text-gray-600 mb-1.5">Data</label>';
+            html += gerenciar_conteudo_campoData('', 'data', item.data);
+            html += '</div>';
+            html += '<div class="flex items-center justify-between p-3 bg-gray-50 rounded-xl">' +
+              '<span class="text-sm text-gray-600">Status</span>' +
+              '<button onclick="gerenciar_conteudo_toggleStatusForm()" id="f-status-toggle" class="relative w-12 h-7 bg-marca-600 rounded-full transition-colors duration-200">' +
+                '<span id="f-status-circle" class="absolute top-0.5 left-6 w-6 h-6 bg-white rounded-full shadow transition-all duration-200"></span>' +
+              '</button>' +
+            '</div>';
+            html += '<p class="text-center text-xs text-gray-400 mt-1" id="f-status-texto">' + (item.publicado ? 'Publicado' : 'Rascunho') + '</p>';
+          } else if (abaAtiva === 'livros') {
+            html += '<div class="flex items-center gap-4 mb-1">' +
+              '<div class="w-16 h-22 bg-gradient-to-br from-marca-100 to-marca-200 rounded-xl flex items-center justify-center flex-shrink-0 shadow-sm">' +
+                '<div class="w-11 h-16 bg-white/80 rounded shadow-sm flex items-center justify-center"><span class="text-[9px] font-display font-bold text-marca-700 text-center leading-tight px-0.5">' + (item.titulo ? item.titulo.substring(0, 15) : 'Capa') + '</span></div>' +
+              '</div>' +
+              '<div class="flex-1">' +
+                gerenciar_conteudo_campoTexto('Título do livro', 'titulo', item.titulo, 'Nome do livro') +
+              '</div>' +
+            '</div>';
+            html += gerenciar_conteudo_campoTexto('Autor', 'autor', item.autor, 'Nome do autor');
+            html += '<div><label class="block text-xs font-semibold text-gray-600 mb-1.5">Descrição</label><textarea id="f-descricao" rows="3" placeholder="Descreva o livro..." class="w-full px-4 py-3 bg-white border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-marca-500/30 focus:border-marca-500 transition-all font-body resize-none">' + (item.descricao || '') + '</textarea></div>';
+            html += '<div class="grid grid-cols-2 gap-3">';
+            html += gerenciar_conteudo_campoNumero('Páginas', 'paginas', item.paginas, 1, 9999);
+            html += gerenciar_conteudo_campoMoeda('Preço (R$)', 'preco', item.preco);
+            html += '</div>';
+            html += '<div class="grid grid-cols-2 gap-3">';
+            html += gerenciar_conteudo_campoSelect('Categoria', 'categoria', catSelected, gerenciar_conteudo_categoriasSelect());
+            html += '<div><label class="block text-xs font-semibold text-gray-600 mb-1.5">Formato</label><select id="f-formato" class="w-full px-4 py-3 bg-white border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-marca-500/30 focus:border-marca-500 transition-all font-body">' +
+              '<option value="ambos"' + (item.formato === 'ambos' ? ' selected' : ' ) + '>📱📕 E-book + Físico</option>' +
+              '<option value="ebook"' + (item.formato === 'ebook' ? ' selected' : ' ) + '>📱 E-book</option>' +
+              '<option value="fisico"' + (item.formato === 'fisico' ? ' selected' : ' ) + '>📕 Físico</option>' +
+            '</select></div>';
+            html += '</div>';
+            html += '<div class="flex items-center justify-between p-3 bg-gray-50 rounded-xl">' +
+              '<span class="text-sm text-gray-600">Disponível</span>' +
+              '<button onclick="gerenciar_conteudo_toggleStatusForm()" id="f-status-toggle" class="relative w-12 h-7 bg-marca-600 rounded-full transition-colors duration-200">' +
+                '<span id="f-status-circle" class="absolute top-0.5 left-6 w-6 h-6 bg-white rounded-full shadow transition-all duration-200"></span>' +
+              '</button>' +
+            '</div>';
+            html += '<p class="text-center text-xs text-gray-400 mt-1" id="f-status-texto">' + (item.publicado ? 'Publicado' : 'Rascunho') + '</p>';
+          }
+
+          corpo.innerHTML = html;
+          modal.classList.remove('hidden');
+          document.body.style.overflow = 'hidden';
+        }
+
+        function gerenciar_conteudo_campoTexto(label, campo, valor, placeholder) {
+          return '<div><label class="block text-xs font-semibold text-gray-600 mb-1.5">' + label + '</label>' +
+            '<input type="text" id="f-' + campo + '" value="' + (valor || '').replace(/"/g, '&quot;') + '" placeholder="' + placeholder + '" class="w-full px-4 py-3 bg-white border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-marca-500/30 focus:border-marca-500 transition-all font-body">' +
+          '</div>';
+        }
+
+        function gerenciar_conteudo_campoNumero(label, campo, valor, min, max) {
+          return '<div><label class="block text-xs font-semibold text-gray-600 mb-1.5">' + label + '</label>' +
+            '<input type="number" id="f-' + campo + '" value="' + valor + '" min="' + min + '" max="' + max + '" class="w-full px-4 py-3 bg-white border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-marca-500/30 focus:border-marca-500 transition-all font-body">' +
+          '</div>';
+        }
+
+        function gerenciar_conteudo_campoMoeda(label, campo, valor) {
+          return '<div><label class="block text-xs font-semibold text-gray-600 mb-1.5">' + label + '</label>' +
+            '<div class="relative">' +
+              '<span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm">R$</span>' +
+              '<input type="number" id="f-' + campo + '" value="' + (valor || 0).toFixed(2).replace('.', ',') + '" step="0.01" min="0" class="w-full pl-10 pr-4 py-3 bg-white border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-marca-500/30 focus:border-marca-500 transition-all font-body">' +
+            '</div>' +
+          '</div>';
+        }
+
+        function gerenciar_conteudo_campoSelect(label, campo, valor, opcoes) {
+          return '<div><label class="block text-xs font-semibold text-gray-600 mb-1.5">' + label + '</label>' +
+            '<select id="f-' + campo + '" class="w-full px-4 py-3 bg-white border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-marca-500/30 focus:border-marca-500 transition-all font-body">' + opcoes + '</select>' +
+          '</div>';
+        }
+
+        function gerenciar_conteudo_campoData(label, campo, valor) {
+          return '<div>' + (label ? '<label class="block text-xs font-semibold text-gray-600 mb-1.5">' + label + '</label>' : '') +
+            '<input type="date" id="f-' + campo + '" value="' + valor + '" class="w-full px-4 py-3 bg-white border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-marca-500/30 focus:border-marca-500 transition-all font-body">' +
+          '</div>';
+        }
+
+        function gerenciar_conteudo_previewImagem(input) {
+          if (input.files && input.files[0]) {
+            var preview = document.getElementById('f-imagem-preview');
+            var previewContent = document.getElementById('f-imagem-preview-content');
+            preview.classList.remove('hidden');
+            previewContent.innerHTML = '<img src="' + URL.createObjectURL(input.files[0]) + '" class="w-full h-full object-cover rounded-xl" alt="Preview">';
+          }
+        }
+
+        function gerenciar_conteudo_removerImagem() {
+          document.getElementById('f-imagem-preview').classList.add('hidden');
+          document.getElementById('f-imagem-input').value = '';
+        }
+
+        function gerenciar_conteudo_toggleStatusForm() {
+          var toggle = document.getElementById('f-status-toggle');
+          var circle = document.getElementById('f-status-circle');
+          var texto = document.getElementById('f-status-texto');
+          var publicado = toggle.dataset.publicado === 'true';
+          publicado = !publicado;
+          toggle.dataset.publicado = publicado;
+          if (publicado) {
+            toggle.classList.remove('bg-gray-300');
+            toggle.classList.add('bg-marca-600');
+            circle.style.left = '1.5rem';
+            texto.textContent = 'Publicado';
+          } else {
+            toggle.classList.add('bg-gray-300');
+            toggle.classList.remove('bg-marca-600');
+            circle.style.left = '0.125rem';
+            texto.textContent = 'Rascunho';
+          }
+        }
+
+        function gerenciar_conteudo_togglePublicado(id) {
+          var item = dados[abaAtiva].find(function(it) { return it.id === id; });
+          if (!item) return;
+          item.publicado = !item.publicado;
+          gerenciar_conteudo_renderizar();
+          toast(item.publicado ? 'Item publicado com sucesso' : 'Item movido para rascunho', 'ok');
+        }
+
+        function gerenciar_conteudo_solicitarExclusao(id) {
+          excluirId = id;
+          document.getElementById('modal-excluir').classList.remove('hidden');
+          document.body.style.overflow = 'hidden';
+        }
+
+        function gerenciar_conteudo_fecharExcluir() {
+          document.getElementById('modal-excluir').classList.add('hidden');
+          document.body.style.overflow = '';
+          excluirId = null;
+        }
+
+        function gerenciar_conteudo_confirmarExcluir() {
+          if (!excluirId) return;
+          dados[abaAtiva] = dados[abaAtiva].filter(function(it) { return it.id !== excluirId; });
+          gerenciar_conteudo_renderizar();
+          gerenciar_conteudo_fecharExcluir();
+          toast('Item excluído com sucesso', 'ok');
+        }
+
+        function gerenciar_conteudo_salvar() {
+          var campos = {};
+          var campoId = 'f-titulo';
+          campos.titulo = (document.getElementById(campoId) || {}).value || '';
+
+          if (abaAtiva === 'noticias') {
+            campos.corpo = (document.getElementById('f-corpo') || {}).value || '';
+            campos.categoria = (document.getElementById('f-categoria') || {}).value || '';
+            campos.data = (document.getElementById('f-data') || {}).value || dataBR(new Date().toISOString());
+          } else if (abaAtiva === 'palavras') {
+            campos.corpo = (document.getElementById('f-corpo') || {}).value || '';
+            campos.reflexao = (document.getElementById('f-reflexao') || {}).value || '';
+            campos.data = (document.getElementById('f-data') || {}).value || dataBR(new Date().toISOString());
+          } else {
+            campos.autor = (document.getElementById('f-autor') || {}).value || '';
+            campos.descricao = (document.getElementById('f-descricao') || {}).value || '';
+            campos.paginas = parseInt((document.getElementById('f-paginas') || {}).value) || 0;
+            campos.preco = parseFloat((document.getElementById('f-preco') || {}).value) || 0;
+            campos.categoria = (document.getElementById('f-categoria') || {}).value || '';
+            campos.formato = (document.getElementById('f-formato') || {}).value || 'ambos';
+          }
+
+          var toggle = document.getElementById('f-status-toggle');
+          campos.publicado = toggle.dataset.publicado === 'true';
+
+          if (!campos.titulo) {
+            toast('Preencha o título', 'erro');
+            return;
+          }
+          if (abaAtiva === 'livros' && !campos.autor) {
+            toast('Preencha o nome do autor', 'erro');
+            return;
+          }
+
+          var lista = dados[abaAtiva];
+          if (editandoId) {
+            var idx = lista.findIndex(function(it) { return it.id === editandoId; });
+            if (idx >= 0) {
+              Object.keys(campos).forEach(function(k) { lista[idx][k] = campos[k]; });
+              toast('Item atualizado com sucesso', 'ok');
+            }
+          } else {
+            campos.id = abaAtiva.charAt(0) + '_' + Date.now();
+            if (abaAtiva === 'noticias') campos.imagem = '';
+            lista.unshift(campos);
+            toast(abaAtiva === 'noticias' ? 'Notícia criada' : abaAtiva === 'palavras' ? 'Palavra criada' : 'Livro cadastrado', 'ok');
+          }
+
+          gerenciar_conteudo_fecharFormulario();
+          gerenciar_conteudo_renderizar();
+        }
+
+        function gerenciar_conteudo_cancelar() {
+          gerenciar_conteudo_fecharFormulario();
+        }
+
+        function gerenciar_conteudo_fecharFormulario() {
+          document.getElementById('modal-formulario').classList.add('hidden');
+          document.body.style.overflow = '';
+          editandoId = null;
+        }
+
+        gerenciar_conteudo_filtrar('todos');
+        gerenciar_conteudo_abrirAba('noticias');
+      })();
+      </script>
+    </section>
+
     <!-- TELAS -->
 
     </div>
