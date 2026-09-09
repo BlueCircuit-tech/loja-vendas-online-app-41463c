@@ -408,7 +408,315 @@
       <!-- ═══════════════════════════════════ -->
       <!--          TELAS                     -->
       <!-- ═══════════════════════════════════ -->
-      <!-- TELAS -->
+      <section data-tela="pagina-inicial" class="hidden">
+        <div class="px-5 pt-4 pb-2">
+            <!-- Palavra do Dia -->
+            <div class="bg-marca-900 rounded-2xl p-5 text-white relative overflow-hidden cursor-pointer active:scale-[0.98] transition-transform" onclick="pagina_inicial_abrirPalavraDoDia()">
+                <div class="absolute top-0 right-0 w-32 h-32 bg-white/5 rounded-full -translate-y-1/2 translate-x-1/2"></div>
+                <div class="absolute bottom-0 left-0 w-24 h-24 bg-white/5 rounded-full translate-y-1/2 -translate-x-1/2"></div>
+                <div class="relative">
+                    <div class="flex items-center gap-2 mb-3">
+                        <svg class="w-5 h-5 text-yellow-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+                        <span class="text-yellow-300 text-xs font-semibold tracking-wider uppercase">Palavra do Dia</span>
+                    </div>
+                    <h2 class="font-display text-2xl font-bold mb-1">Resiliência</h2>
+                    <p class="text-marca-200 text-xs mb-3">11 de Janeiro de 2025</p>
+                    <p class="text-white/80 text-sm leading-relaxed mb-4 line-clamp-3">Capacidade de se recuperar rapidamente de dificuldades. Não é apenas sobre suportar, mas sobre crescer através dos desafios. Cada queda é uma oportunidade de levantar mais forte.</p>
+                    <button class="bg-white text-marca-900 px-4 py-2 rounded-full text-sm font-semibold flex items-center gap-2 active:scale-95 transition-transform" onclick="pagina_inicial_abrirPalavraDoDia()">
+                        Ler mais
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Últimas Notícias -->
+        <div class="mt-4 px-5 pb-2">
+            <div class="flex items-center justify-between mb-4">
+                <h3 class="font-display text-lg font-bold text-marca-900">Últimas Notícias</h3>
+                <button class="text-marca-500 text-sm font-semibold flex items-center gap-1 active:scale-95 transition-transform" onclick="mostrarTela('palavra-do-dia')">
+                    Ver todas
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                </button>
+            </div>
+            <div class="space-y-4" id="lista-noticias">
+                <div class="card cursor-pointer active:scale-[0.98] transition-transform" onclick="pagina_inicial_abrirNoticia(0)">
+                    <div class="bg-gradient-to-br from-marca-800 to-marca-600 rounded-xl h-44 relative overflow-hidden flex items-center justify-center">
+                        <svg class="w-16 h-16 text-white/20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+                        <span class="absolute top-3 left-3 badge bg-red-500 text-white text-xs">Destaque</span>
+                    </div>
+                    <div class="p-3">
+                        <div class="flex items-center gap-2 mb-2">
+                            <span class="badge bg-marca-100 text-marca-700 text-xs">Literatura</span>
+                            <span class="text-xs text-gray-400">11 Jan 2025</span>
+                        </div>
+                        <h4 class="font-display font-bold text-marca-900 text-sm leading-snug">Bienal do Livro São Paulo bate recorde de visitantes em 2024</h4>
+                        <p class="text-gray-500 text-xs mt-2 line-clamp-2">Evento reuniu mais de 600 mil pessoas e movimentou R$ 42 milhões em vendas. Organizadores anunciam expansão para 2025.</p>
+                    </div>
+                </div>
+
+                <div class="card cursor-pointer active:scale-[0.98] transition-transform" onclick="pagina_inicial_abrirNoticia(1)">
+                    <div class="bg-gradient-to-br from-blue-700 to-blue-500 rounded-xl h-44 relative overflow-hidden flex items-center justify-center">
+                        <svg class="w-16 h-16 text-white/20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
+                        <span class="absolute top-3 left-3 badge bg-emerald-500 text-white text-xs">Educação</span>
+                    </div>
+                    <div class="p-3">
+                        <div class="flex items-center gap-2 mb-2">
+                            <span class="badge bg-marca-100 text-marca-700 text-xs">Educação</span>
+                            <span class="text-xs text-gray-400">10 Jan 2025</span>
+                        </div>
+                        <h4 class="font-display font-bold text-marca-900 text-sm leading-snug">Governo anuncia programa de incentivo à leitura nas escolas públicas</h4>
+                        <p class="text-gray-500 text-xs mt-2 line-clamp-2">Nova iniciativa vai distribuir 10 milhões de livros para estudantes de todo o país até o final do ano.</p>
+                    </div>
+                </div>
+
+                <div class="card cursor-pointer active:scale-[0.98] transition-transform" onclick="pagina_inicial_abrirNoticia(2)">
+                    <div class="bg-gradient-to-br from-amber-700 to-amber-500 rounded-xl h-44 relative overflow-hidden flex items-center justify-center">
+                        <svg class="w-16 h-16 text-white/20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
+                        <span class="absolute top-3 left-3 badge bg-amber-500 text-white text-xs">Entrevista</span>
+                    </div>
+                    <div class="p-3">
+                        <div class="flex items-center gap-2 mb-2">
+                            <span class="badge bg-marca-100 text-marca-700 text-xs">Entrevista</span>
+                            <span class="text-xs text-gray-400">09 Jan 2025</span>
+                        </div>
+                        <h4 class="font-display font-bold text-marca-900 text-sm leading-snug">Autora brasileira é finalista do Prêmio Internacional de Literatura</h4>
+                        <p class="text-gray-500 text-xs mt-2 line-clamp-2">Carolina Mendes, de Belo Horizonte, concorre com obra que explora identidade e pertencimento.</p>
+                    </div>
+                </div>
+
+                <div class="card cursor-pointer active:scale-[0.98] transition-transform" onclick="pagina_inicial_abrirNoticia(3)">
+                    <div class="bg-gradient-to-br from-teal-700 to-teal-500 rounded-xl h-44 relative overflow-hidden flex items-center justify-center">
+                        <svg class="w-16 h-16 text-white/20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                        <span class="absolute top-3 left-3 badge bg-teal-500 text-white text-xs">Tecnologia</span>
+                    </div>
+                    <div class="p-3">
+                        <div class="flex items-center gap-2 mb-2">
+                            <span class="badge bg-marca-100 text-marca-700 text-xs">Tecnologia</span>
+                            <span class="text-xs text-gray-400">08 Jan 2025</span>
+                        </div>
+                        <h4 class="font-display font-bold text-marca-900 text-sm leading-snug">E-books crescem 35% no Brasil e ultrapassam livros físicos em vendas</h4>
+                        <p class="text-gray-500 text-xs mt-2 line-clamp-2">Pesquisa mostra que brasileiros preferem formato digital por praticidade e preço acessível.</p>
+                    </div>
+                </div>
+
+                <div class="card cursor-pointer active:scale-[0.98] transition-transform" onclick="pagina_inicial_abrirNoticia(4)">
+                    <div class="bg-gradient-to-br from-rose-700 to-rose-500 rounded-xl h-44 relative overflow-hidden flex items-center justify-center">
+                        <svg class="w-16 h-16 text-white/20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
+                        <span class="absolute top-3 left-3 badge bg-rose-500 text-white text-xs">Cultura</span>
+                    </div>
+                    <div class="p-3">
+                        <div class="flex items-center gap-2 mb-2">
+                            <span class="badge bg-marca-100 text-marca-700 text-xs">Cultura</span>
+                            <span class="text-xs text-gray-400">07 Jan 2025</span>
+                        </div>
+                        <h4 class="font-display font-bold text-marca-900 text-sm leading-snug">Clube de leitura online ganha 200 mil membros em seis meses</h4>
+                        <p class="text-gray-500 text-xs mt-2 line-clamp-2">Comunidade promove debates semanais e indicações personalizadas com inteligência artificial.</p>
+                    </div>
+                </div>
+
+                <div class="card cursor-pointer active:scale-[0.98] transition-transform" onclick="pagina_inicial_abrirNoticia(5)">
+                    <div class="bg-gradient-to-br from-indigo-700 to-indigo-500 rounded-xl h-44 relative overflow-hidden flex items-center justify-center">
+                        <svg class="w-16 h-16 text-white/20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9a2 2 0 00-2 2v1m-4 9h12a2 2 0 002-2V7"/></svg>
+                        <span class="absolute top-3 left-3 badge bg-indigo-500 text-white text-xs">Novidade</span>
+                    </div>
+                    <div class="p-3">
+                        <div class="flex items-center gap-2 mb-2">
+                            <span class="badge bg-marca-100 text-marca-700 text-xs">Lançamento</span>
+                            <span class="text-xs text-gray-400">06 Jan 2025</span>
+                        </div>
+                        <h4 class="font-display font-bold text-marca-900 text-sm leading-snug">Primeira feira de literatura independente acontece em Recife</h4>
+                        <p class="text-gray-500 text-xs mt-2 line-clamp-2">Evento reúne 80 editoras pequenas e promete workshops gratuitos para leitores e autores iniciantes.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Livros em Destaque -->
+        <div class="mt-6 pb-6">
+            <div class="px-5 flex items-center justify-between mb-4">
+                <h3 class="font-display text-lg font-bold text-marca-900">Livros em Destaque</h3>
+                <button class="text-marca-500 text-sm font-semibold flex items-center gap-1 active:scale-95 transition-transform" onclick="mostrarTela('catalogo-de-livros')">
+                    Ver todos
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                </button>
+            </div>
+            <div class="overflow-x-auto scrollbar-hide -mx-5 px-5">
+                <div class="flex gap-4" style="width: max-content;" id="carousel-livros">
+                    <div class="w-36 flex-shrink-0 cursor-pointer active:scale-95 transition-transform" onclick="mostrarTela('detalhe-do-livro')">
+                        <div class="bg-gradient-to-br from-amber-600 to-amber-800 rounded-xl aspect-[3/4] flex items-center justify-center mb-2 shadow-lg relative overflow-hidden">
+                            <div class="absolute inset-0 bg-white/5"></div>
+                            <div class="text-center px-2 relative z-10">
+                                <svg class="w-8 h-8 text-white/30 mx-auto mb-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+                            </div>
+                            <span class="absolute top-2 right-2 badge bg-green-500 text-white text-[10px]">E-book</span>
+                        </div>
+                        <h5 class="font-display font-bold text-marca-900 text-xs leading-snug truncate">O Silêncio das Águas</h5>
+                        <p class="text-gray-400 text-[10px]">Marina Torres</p>
+                        <p class="text-marca-500 font-bold text-sm mt-1">R$ 34,90</p>
+                    </div>
+
+                    <div class="w-36 flex-shrink-0 cursor-pointer active:scale-95 transition-transform" onclick="mostrarTela('detalhe-do-livro')">
+                        <div class="bg-gradient-to-br from-emerald-600 to-teal-800 rounded-xl aspect-[3/4] flex items-center justify-center mb-2 shadow-lg relative overflow-hidden">
+                            <div class="absolute inset-0 bg-white/5"></div>
+                            <div class="text-center px-2 relative z-10">
+                                <svg class="w-8 h-8 text-white/30 mx-auto mb-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+                            </div>
+                            <span class="absolute top-2 right-2 badge bg-blue-500 text-white text-[10px]">Físico</span>
+                        </div>
+                        <h5 class="font-display font-bold text-marca-900 text-xs leading-snug truncate">Caminhos da Alma</h5>
+                        <p class="text-gray-400 text-[10px]">Ricardo Almeida</p>
+                        <p class="text-marca-500 font-bold text-sm mt-1">R$ 49,90</p>
+                    </div>
+
+                    <div class="w-36 flex-shrink-0 cursor-pointer active:scale-95 transition-transform" onclick="mostrarTela('detalhe-do-livro')">
+                        <div class="bg-gradient-to-br from-blue-700 to-indigo-900 rounded-xl aspect-[3/4] flex items-center justify-center mb-2 shadow-lg relative overflow-hidden">
+                            <div class="absolute inset-0 bg-white/5"></div>
+                            <div class="text-center px-2 relative z-10">
+                                <svg class="w-8 h-8 text-white/30 mx-auto mb-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+                            </div>
+                            <span class="absolute top-2 right-2 badge bg-green-500 text-white text-[10px]">E-book</span>
+                        </div>
+                        <h5 class="font-display font-bold text-marca-900 text-xs leading-snug truncate">Horizonte Interior</h5>
+                        <p class="text-gray-400 text-[10px]">Fernanda Costa</p>
+                        <p class="text-marca-500 font-bold text-sm mt-1">R$ 29,90</p>
+                    </div>
+
+                    <div class="w-36 flex-shrink-0 cursor-pointer active:scale-95 transition-transform" onclick="mostrarTela('detalhe-do-livro')">
+                        <div class="bg-gradient-to-br from-purple-700 to-violet-900 rounded-xl aspect-[3/4] flex items-center justify-center mb-2 shadow-lg relative overflow-hidden">
+                            <div class="absolute inset-0 bg-white/5"></div>
+                            <div class="text-center px-2 relative z-10">
+                                <svg class="w-8 h-8 text-white/30 mx-auto mb-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+                            </div>
+                            <span class="absolute top-2 right-2 badge bg-blue-500 text-white text-[10px]">Físico</span>
+                        </div>
+                        <h5 class="font-display font-bold text-marca-900 text-xs leading-snug truncate">Poemas da Madrugada</h5>
+                        <p class="text-gray-400 text-[10px]">Ana Beatriz Luz</p>
+                        <p class="text-marca-500 font-bold text-sm mt-1">R$ 39,90</p>
+                    </div>
+
+                    <div class="w-36 flex-shrink-0 cursor-pointer active:scale-95 transition-transform" onclick="mostrarTela('detalhe-do-livro')">
+                        <div class="bg-gradient-to-br from-cyan-700 to-sky-900 rounded-xl aspect-[3/4] flex items-center justify-center mb-2 shadow-lg relative overflow-hidden">
+                            <div class="absolute inset-0 bg-white/5"></div>
+                            <div class="text-center px-2 relative z-10">
+                                <svg class="w-8 h-8 text-white/30 mx-auto mb-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+                            </div>
+                            <span class="absolute top-2 right-2 badge bg-green-500 text-white text-[10px]">E-book</span>
+                        </div>
+                        <h5 class="font-display font-bold text-marca-900 text-xs leading-snug truncate">Memórias de um Tempo</h5>
+                        <p class="text-gray-400 text-[10px]">Paulo Henrique R.</p>
+                        <p class="text-marca-500 font-bold text-sm mt-1">R$ 27,90</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script>
+        const pagina_inicial_noticias = [
+            {
+                titulo: 'Bienal do Livro São Paulo bate recorde de visitantes em 2024',
+                categoria: 'Literatura',
+                data: '2025-01-11',
+                corCategoria: 'bg-red-500',
+                corGradiente: 'from-marca-800 to-marca-600',
+                iconeCategoria: 'M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253',
+                texto: 'A 26ª edição da Bienal Internacional do Livro de São Paulo superou todas as expectativas, recebendo mais de 600 mil visitantes nos dez dias de evento. A feira movimentou aproximadamente R$ 42 milhões em vendas diretas e contou com mais de 400 expositores de 30 países diferentes. Os organizadores já anunciaram que a edição de 2026 será ampliada, com um espaço 30% maior no Parque de Exposições do Anhembi.',
+                autor: 'Redação Palavra & Letras',
+                tempoLeitura: '4 min de leitura'
+            },
+            {
+                titulo: 'Governo anuncia programa de incentivo à leitura nas escolas públicas',
+                categoria: 'Educação',
+                data: '2025-01-10',
+                corCategoria: 'bg-emerald-500',
+                corGradiente: 'from-blue-700 to-blue-500',
+                iconeCategoria: 'M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z',
+                texto: 'O Ministério da Educação lançou o programa "Ler é Transformar", que vai distribuir 10 milhões de livros para estudantes de escolas públicas de todo o Brasil até dezembro de 2025. A iniciativa inclui também a formação de 50 mil mediadores de leitura e a criação de 3 mil novas bibliotecas escolares em regiões remotas. O investimento total é de R$ 380 milhões.',
+                autor: 'Carolina Souza',
+                tempoLeitura: '3 min de leitura'
+            },
+            {
+                titulo: 'Autora brasileira é finalista do Prêmio Internacional de Literatura',
+                categoria: 'Entrevista',
+                data: '2025-01-09',
+                corCategoria: 'bg-amber-500',
+                corGradiente: 'from-amber-700 to-amber-500',
+                iconeCategoria: 'M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z',
+                texto: 'Carolina Mendes, de Belo Horizonte, está entre os finalistas do prestigiado Prêmio Internacional de Literatura Contemporânea, com sua obra "Entre Margens". O livro explora temas de identidade, pertencimento e a experiência da mulher brasileira contemporânea. A autora, de 38 anos, já publicou três romances e conta com mais de 50 mil leitores fiéis no Brasil.',
+                autor: 'Roberto Lima',
+                tempoLeitura: '5 min de leitura'
+            },
+            {
+                titulo: 'E-books crescem 35% no Brasil e ultrapassam livros físicos em vendas',
+                categoria: 'Tecnologia',
+                data: '2025-01-08',
+                corCategoria: 'bg-teal-500',
+                corGradiente: 'from-teal-700 to-teal-500',
+                iconeCategoria: 'M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z',
+                texto: 'Uma pesquisa divulgada pela Câmara Brasileira do Livro revela que os livros digitais ultrapassaram os físicos em volume de vendas no último trimestre de 2024. O crescimento de 35% no segmento de e-books foi impulsionado pela praticidade, preços mais acessíveis e a popularização dos e-readers no país. Especialistas projetam que até 2026, 60% das vendas de livros no Brasil serão no formato digital.',
+                autor: 'Fernanda Rocha',
+                tempoLeitura: '4 min de leitura'
+            },
+            {
+                titulo: 'Clube de leitura online ganha 200 mil membros em seis meses',
+                categoria: 'Cultura',
+                data: '2025-01-07',
+                corCategoria: 'bg-rose-500',
+                corGradiente: 'from-rose-700 to-rose-500',
+                iconeCategoria: 'M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z',
+                texto: 'O Clube da Página, comunidade online de leitura fundada há apenas seis meses, já ultrapassou a marca de 200 mil membros em todo o Brasil. A plataforma promove debates semanais por videoconferência, indicações personalizadas com inteligência artificial e encontros virtuais com autores consagrados. Os fundadores planejam expandir para países de língua portuguesa ainda este ano.',
+                autor: 'Lucas Andrade',
+                tempoLeitura: '3 min de leitura'
+            },
+            {
+                titulo: 'Primeira feira de literatura independente acontece em Recife',
+                categoria: 'Lançamento',
+                data: '2025-01-06',
+                corCategoria: 'bg-indigo-500',
+                corGradiente: 'from-indigo-700 to-indigo-500',
+                iconeCategoria: 'M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9a2 2 0 00-2 2v1m-4 9h12a2 2 0 002-2V7',
+                texto: 'A cidade de Recife recebe entre os dias 15 e 20 de janeiro a primeira edição da Feira de Literatura Independente do Nordeste (FLIN). O evento reúne mais de 80 editoras pequenas e independentes de todo o Brasil, além de oferecer workshops gratuitos de escrita criativa, ilustração editorial e publicação independente. A entrada é franca e a organização espera receber mais de 15 mil visitantes.',
+                autor: 'Patrícia Nascimento',
+                tempoLeitura: '3 min de leitura'
+            }
+        ];
+
+        const pagina_inicial_palavraDoDia = {
+            palavra: 'Resiliência',
+            data: '11 de Janeiro de 2025',
+            texto: 'Capacidade de se recuperar rapidamente de dificuldades. Não é apenas sobre suportar, mas sobre crescer através dos desafios. Cada queda é uma oportunidade de levantar mais forte.',
+            reflexao: 'A resiliência é como um músculo: quanto mais exercitamos, mais fortes nos tornamos. Diante das adversidades da vida, a pessoa resiliente não apenas resiste — ela se transforma. Encare os obstáculos como degraus, não como paredes. Lembre-se: o carvalho resiste às tempestades porque suas raízes aprofundaram-se na terra das dificuldades.',
+            contexto: 'Palavra escolhida para inspirar o início de um novo ano, momento em que muitos renovam esperanças e traçam novos objetivos.'
+        };
+
+        function pagina_inicial_abrirPalavraDoDia() {
+            const html = '<div class="text-center mb-4"><div class="w-20 h-20 bg-marca-100 rounded-full flex items-center justify-center mx-auto mb-3"><svg class="w-10 h-10 text-marca-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg></div><span class="badge bg-marca-100 text-marca-700 text-xs">Palavra do Dia</span></div><h3 class="font-display text-2xl font-bold text-marca-900 text-center mb-1">' + pagina_inicial_palavraDoDia.palavra + '</h3><p class="text-gray-400 text-xs text-center mb-4">' + pagina_inicial_palavraDoDia.data + '</p><div class="bg-marca-50 rounded-xl p-4 mb-4"><p class="text-marca-800 text-sm leading-relaxed italic">"' + pagina_inicial_palavraDoDia.reflexao + '"</p></div><div class="bg-gray-50 rounded-xl p-4"><p class="text-gray-600 text-xs leading-relaxed">' + pagina_inicial_palavraDoDia.contexto + '</p></div>';
+            abrirModal(html, 'Palavra do Dia');
+        }
+
+        function pagina_inicial_abrirNoticia(index) {
+            const n = pagina_inicial_noticias[index];
+            const html = '<div class="bg-gradient-to-br ' + n.corGradiente + ' rounded-xl h-48 flex items-center justify-center mb-4"><svg class="w-20 h-20 text-white/20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="' + n.iconeCategoria + '"/></svg></div><div class="flex items-center gap-2 mb-3"><span class="badge ' + n.corCategoria + ' text-white text-xs">' + n.categoria + '</span><span class="text-xs text-gray-400">' + n.data + '</span></div><h3 class="font-display text-xl font-bold text-marca-900 mb-2">' + n.titulo + '</h3><p class="text-gray-400 text-xs mb-4">Por ' + n.autor + ' · ' + n.tempoLeitura + '</p><p class="text-gray-600 text-sm leading-relaxed">' + n.texto + '</p>';
+            abrirModal(html, 'Notícia');
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const carousel = document.getElementById('carousel-livros');
+            if (carousel) {
+                let isDown = false;
+                let startX;
+                let scrollLeftPos;
+                carousel.addEventListener('mousedown', (e) => { isDown = true; startX = e.pageX - carousel.offsetLeft; scrollLeftPos = carousel.scrollLeft; carousel.style.cursor = 'grabbing'; });
+                carousel.addEventListener('mouseleave', () => { isDown = false; carousel.style.cursor = 'grab'; });
+                carousel.addEventListener('mouseup', () => { isDown = false; carousel.style.cursor = 'grab'; });
+                carousel.addEventListener('mousemove', (e) => { if (!isDown) return; e.preventDefault(); const x = e.pageX - carousel.offsetLeft; carousel.scrollLeft = scrollLeftPos - (x - startX) * 1.5; });
+                carousel.style.cursor = 'grab';
+            }
+        });
+        </script>
+    </section>
+
+    <!-- TELAS -->
 
     </div>
 
